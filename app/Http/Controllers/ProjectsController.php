@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 
 use App\Project;
 
+use App\ProjectImage;
+
 use Illuminate\Support\Facades\Session;
 
 use Illuminate\Support\Facades\Redirect;
+
+//Intervention Image package dependency (see config/app.php)
+use Image;
 
 class ProjectsController extends Controller
 {
@@ -66,6 +71,60 @@ class ProjectsController extends Controller
 
         //redirect back
         return Redirect::back()->with(Session::flash('message', 'Project Successfully Updated!'));
+    }
+
+
+    //project gallery function
+    public function multiImageUpload(Request $request)
+    {
+
+
+        //get the file from the edit post page request...
+        $file= $request->file('file');
+
+        //set the file name
+        $filename = uniqid(). $file->getClientOriginalName();
+
+        //move the file to correct location
+        $file->move('images/', $filename);
+
+        //here is where I need to add the thumbnail also....
+        $thumb_string="thmb-".$filename;
+
+        //image intervention creating different sized images
+        Image::make( public_path('images/'.$filename))->resize(300, 200)->save('images/'.$thumb_string);
+
+        // save the image details into the database
+
+        $project = Project::find($request->input('project_id'));
+        $image = $project->images()->create([
+
+            'project_id' => $request->input('project_id'),
+            'file_name' => $filename,
+        ]);
+
+
+        return $image;
+    }
+
+
+    //image caption action
+    public function updateImageCaption($id, Request $request)
+    {
+//        $project_id = ($request->input('project_id'));
+
+        //find specific image from ProjectImage using ORM
+        $image = ProjectImage::findOrFail($id);
+
+        //set image description to that passed through request
+        $image->description = $request->input('description');
+
+        //finalize by saving caption to image
+        $image->save();
+
+        return redirect()->back()->with(Session::flash('message', 'Image caption updated!'));
+
+
     }
 
 }

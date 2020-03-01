@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//currently unused home route
 Route::get('/home', 'HomeController@index')->name('home');
 
 //create project get/view route
@@ -35,3 +36,10 @@ Route::get('/edit-project/{id}', 'ProjectsController@edit')->name('edit-project'
 Route::patch('/project-update/{id}', 'ProjectsController@update')->name('project-update');
 
 
+
+// dropzone multi image/project gallery post route:
+Route::post('multi-upload', 'ProjectsController@multiImageUpload')->name('multi-upload');
+
+//update gallery image caption route:
+
+Route::post('image-update/{id}', 'ProjectsController@updateImageCaption')->name('image-update');

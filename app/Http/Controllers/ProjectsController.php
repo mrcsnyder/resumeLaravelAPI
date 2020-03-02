@@ -92,7 +92,7 @@ class ProjectsController extends Controller
         $thumb_string="thmb-".$filename;
 
         //image intervention creating different sized images
-        Image::make( public_path('images/'.$filename))->resize(300, 200)->save('images/'.$thumb_string);
+        Image::make( public_path('images/'.$filename))->resize(430, 296)->save('images/'.$thumb_string);
 
         // save the image details into the database
 

@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bfc13655-5c50-4f75-aee6-377f140cc187" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/resumeLaravelAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/resumeLaravelAPI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,8 +165,16 @@
       <option name="presentableId" value="Default" />
       <updated>1583039113117</updated>
       <workItem from="1583039114438" duration="19564000" />
-      <workItem from="1583117364200" duration="1391000" />
+      <workItem from="1583117364200" duration="3352000" />
     </task>
+    <task id="LOCAL-00001" summary="updating api access points">
+      <created>1583120993219</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1583120993219</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,10 +196,22 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="updating api access points" />
+    <option name="LAST_COMMIT_MESSAGE" value="updating api access points" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="563" y="276" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583117526734">
       <screen x="0" y="23" width="1440" height="825" />
     </state>
     <state x="563" y="276" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.825@0.23.1440.825" timestamp="1583117526734" />
+    <state x="579" y="53" key="CommitChangelistDialog2" timestamp="1583120992921">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state x="579" y="53" key="CommitChangelistDialog2/0.23.1440.825@0.23.1440.825" timestamp="1583120992921" />
+    <state x="596" y="192" key="Vcs.Push.Dialog.v2" timestamp="1583120995208">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state x="596" y="192" key="Vcs.Push.Dialog.v2/0.23.1440.825@0.23.1440.825" timestamp="1583120995208" />
   </component>
 </project>

@@ -118,6 +118,8 @@ class ProjectsController extends Controller
 
         //set image description to that passed through request
         $image->description = $request->input('description');
+        $image->main_img = $request->input('main_img');
+
 
         //finalize by saving caption to image
         $image->save();

@@ -80,6 +80,12 @@
                                             @csrf
                                             <input type="hidden" name="project_id" value="{{$project->id}}" />
 
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" name="main_img" class="form-check-input" value="">Set to Main Image
+                                                </label>
+                                            </div>
+
                                             <div class="form-group">
                                             <textarea class="form-control" name="description"></textarea>
                                             </div>
@@ -98,6 +104,12 @@
                                     @csrf
 
                                     <input type="hidden" name="project_id" value="{{$project->id}}" />
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" name="main_img" class="form-check-input" {{ $image->main_img == 1 ? 'checked' : '' }}>Set to Main Image
+                                        </label>
+                                    </div>
+
                                     <div class="form-group">
                                     <textarea class="form-control" name="description">{{$image->description}}</textarea>
                                     </div>

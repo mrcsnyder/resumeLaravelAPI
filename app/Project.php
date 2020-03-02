@@ -18,4 +18,11 @@ class Project extends Model
 
     }
 
+    // return the main image for the portfolio page
+    public function main_images() {
+        return $this->images()->where('main_img','=', 1);
+    }
+
+
+
 }

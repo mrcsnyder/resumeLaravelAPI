@@ -106,7 +106,7 @@
                                     <input type="hidden" name="project_id" value="{{$project->id}}" />
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input type="checkbox" name="main_img" class="form-check-input" {{ $image->main_img == 1 ? 'checked' : '' }}>Set to Main Image
+                                            <input type="checkbox" name="main_img" class="form-check-input" value="{{ $image->main_img == 1 ? 1 : 0 }}" {{ $image->main_img == 1 ? 'checked' : '' }}>Set to Main Image
                                         </label>
                                     </div>
 

@@ -124,7 +124,6 @@ class ProjectsController extends Controller
 
         return redirect()->back()->with(Session::flash('message', 'Image caption updated!'));
 
-
     }
 
 }

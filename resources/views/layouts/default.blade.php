@@ -13,7 +13,7 @@
     <title>Resume API | @yield('title')</title>
 </head>
 <body>
-
+@include('layouts.partials.upper-nav')
 <div class="container mt-5">
     @if(Session::has('message'))
         <div class="alert alert-success mt-3">

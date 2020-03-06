@@ -113,12 +113,33 @@ class ProjectsController extends Controller
     {
 //        $project_id = ($request->input('project_id'));
 
+//        dd($request->input('main_img'));
         //find specific image from ProjectImage using ORM
         $image = ProjectImage::findOrFail($id);
 
         //set image description to that passed through request
         $image->description = $request->input('description');
-        $image->main_img = $request->input('main_img');
+
+        //testing project relation
+        $project = Project::findOrFail($request->input('project_id'));
+        //dd($project->images()->get());
+        dd($request->get('main_img'));
+        if(( ($request->input('main_img')) )){
+
+            //update all other related images by setting them to false before setting new main_img
+//            $project->images()->update(['main_img'=>false]);
+//
+//            // then set the current image
+//            $image->main_img = $request->input('main_img');
+            dd('you got here to false land');
+
+        }
+
+        else{
+
+            dd('you did not get to false land');
+        }
+
 
 
         //finalize by saving caption to image

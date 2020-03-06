@@ -17,29 +17,26 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//currently unused home route
-Route::get('/home', 'HomeController@index')->name('home');
+//projects index page and root/home route
+Route::get('/', 'ProjectsController@index')->name('/');
 
 //create project get/view route
-Route::get('/create-project', 'ProjectsController@create')->name('create-project');
+Route::get('/create-project', 'ProjectsController@create')->name('create-project')->middleware('power');
 
 //store newly created project post route
-Route::post('/create-project', 'ProjectsController@store')->name('create-project');
+Route::post('/create-project', 'ProjectsController@store')->name('create-project')->middleware('power');
 
-//projects index page
-Route::get('/projects', 'ProjectsController@index')->name('projects');
 
 //edit get/view route
-Route::get('/edit-project/{id}', 'ProjectsController@edit')->name('edit-project');
+Route::get('/edit-project/{id}', 'ProjectsController@edit')->name('edit-project')->middleware('power');
 
 // update project
-Route::patch('/project-update/{id}', 'ProjectsController@update')->name('project-update');
-
+Route::patch('/project-update/{id}', 'ProjectsController@update')->name('project-update')->middleware('power');
 
 
 // dropzone multi image/project gallery post route:
-Route::post('multi-upload', 'ProjectsController@multiImageUpload')->name('multi-upload');
+Route::post('multi-upload', 'ProjectsController@multiImageUpload')->name('multi-upload')->middleware('power');
 
 //update gallery image caption route:
 
-Route::post('image-update/{id}', 'ProjectsController@updateImageCaption')->name('image-update');
+Route::post('image-update/{id}', 'ProjectsController@updateImageCaption')->name('image-update')->middleware('power');

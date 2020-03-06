@@ -36,4 +36,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function checkAdmin()
+    {
+        // this looks for an admin column in your users table
+        return $this->admin;
+    }
 }

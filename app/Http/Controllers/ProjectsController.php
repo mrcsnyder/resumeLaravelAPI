@@ -122,23 +122,25 @@ class ProjectsController extends Controller
 
         //testing project relation
         $project = Project::findOrFail($request->input('project_id'));
-        //dd($project->images()->get());
-        dd($request->get('main_img'));
-        if(( ($request->input('main_img')) )){
 
-            //update all other related images by setting them to false before setting new main_img
-//            $project->images()->update(['main_img'=>false]);
+
+
+//need to work this part out...
+//        if(( ($request->input('main_img')) )){
 //
-//            // then set the current image
-//            $image->main_img = $request->input('main_img');
-            dd('you got here to false land');
-
-        }
-
-        else{
-
-            dd('you did not get to false land');
-        }
+//            //update all other related images by setting them to false before setting new main_img
+////            $project->images()->update(['main_img'=>false]);
+////
+////            // then set the current image
+////            $image->main_img = $request->input('main_img');
+//            dd('you got here to false land');
+//
+//        }
+//
+//        else{
+//
+//            dd('you did not get to false land');
+//        }
 
 
 

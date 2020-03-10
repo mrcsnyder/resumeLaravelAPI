@@ -59,15 +59,15 @@
 </div>
 
 @if($project->images->count() > 0)
-    <h4 class="mt-3">Curent Images</h4>
+    <h4 class="mt-3">Current Images</h4>
 @endif
 <div class="row mb-3">
 
                 @foreach($project->images as $image)
 
-                    <div class="col-3">
+                    <div class="col-md-6 col-lg-3 mt-3 text-center">
                         <a href="/images/{{$image->file_name}}" target="_blank">
-                            <img class="img-fluid" src="/images/{{$image->file_name}}">
+                            <img class="img-fluid mx-auto" src="/images/thmb-{{$image->file_name}}">
                         </a>
 
                         <div class="card card-body">
@@ -104,11 +104,14 @@
                                     @csrf
 
                                     <input type="hidden" name="project_id" value="{{$project->id}}" />
+
+
                                     <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input type="checkbox" name="main_img" class="form-check-input" value="0" >Set to Main Image
-                                        </label>
+                                        <input type="checkbox" name="main_img" value="{{$image->main_img}}" {{ $image->main_img == 1 ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="main_img">Set to Main Image</label>
                                     </div>
+
+
 
                                     <div class="form-group">
                                     <textarea class="form-control" name="description">{{$image->description}}</textarea>
@@ -126,7 +129,5 @@
                 @endforeach
 
     </div>
-    </div>
-
 
 @endsection

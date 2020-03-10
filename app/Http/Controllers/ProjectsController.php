@@ -78,7 +78,6 @@ class ProjectsController extends Controller
     public function multiImageUpload(Request $request)
     {
 
-
         //get the file from the edit post page request...
         $file= $request->file('file');
 
@@ -111,9 +110,7 @@ class ProjectsController extends Controller
     //image caption action
     public function updateImageCaption($id, Request $request)
     {
-//        $project_id = ($request->input('project_id'));
 
-//        dd($request->input('main_img'));
         //find specific image from ProjectImage using ORM
         $image = ProjectImage::findOrFail($id);
 
@@ -124,25 +121,16 @@ class ProjectsController extends Controller
         $project = Project::findOrFail($request->input('project_id'));
 
 
+        //if main_img checkbox is set to true this condition is met
+        if(( ($request->has('main_img')) )){
 
-//need to work this part out...
-//        if(( ($request->input('main_img')) )){
-//
-//            //update all other related images by setting them to false before setting new main_img
-////            $project->images()->update(['main_img'=>false]);
-////
-////            // then set the current image
-////            $image->main_img = $request->input('main_img');
-//            dd('you got here to false land');
-//
-//        }
-//
-//        else{
-//
-//            dd('you did not get to false land');
-//        }
+            //update all other related images by setting them to false before setting new main_img
+            $project->images()->update(['main_img'=>false]);
 
+            // then set the current image
+            $image->main_img = $request->has('main_img');
 
+        }
 
         //finalize by saving caption to image
         $image->save();

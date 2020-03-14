@@ -98,7 +98,7 @@
                             <h6>Current Caption:</h6><p>{{$image->description}}</p>
                         <button type="button" class="btn btn-warning" data-toggle="collapse" data-target="{{'#'.$image->id}}">Edit Description</button>
                         <div id="{{$image->id}}" class="collapse">
-                            
+
                                 <form class="mt-2" method="POST" action="{{ route('/projects/image-update', [$image->id])}}">
                                     @csrf
 

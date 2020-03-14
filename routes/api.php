@@ -28,6 +28,6 @@ Route::get('portfolio-projects', function() {
 });
 
 Route::get('portfolio-project/{id}', function($id) {
-    //return Project::find($id)->images;
-    return Project::find($id)->all_other_images;
+    return Project::find($id)->images;
+   // return Project::find($id)->all_other_images;
 });

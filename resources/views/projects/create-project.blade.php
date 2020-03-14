@@ -3,7 +3,7 @@
 @section('content')
 
 <h1>Create Project</h1>
-<form method="POST" action="{{ route('create-project') }}">
+<form method="POST" action="{{ route('/projects/create-project') }}">
     @csrf
 
     <label for="">Project Name</label>

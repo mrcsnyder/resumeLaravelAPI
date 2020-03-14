@@ -10,6 +10,8 @@
     <!--- Dropzone --->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css" crossorigin="anonymous">
 
+    <script src="https://kit.fontawesome.com/0bfb6f724d.js" crossorigin="anonymous"></script>
+
     <title>Resume API | @yield('title')</title>
 </head>
 <body>

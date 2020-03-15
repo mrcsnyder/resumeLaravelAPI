@@ -23,14 +23,14 @@
 
                 <div class="form-group">
                     <label for="start_month_year">Start Month & Year</label>
-                    <input class="form-control" id="start_month_year" name="start_month_year" type="text" value="{{$education->start_month_year}}"/>
+                    <input class="form-control" id="start_month_year_preformat" name="start_month_year_preformat" type="month" value="{{$education->start_month_year_preformat}}"/>
                 </div>
             </div>
 
             <div class="col">
                 <div class="form-group">
                     <label for="end_month_year">End Month & Year</label>
-                    <input class="form-control" id="end_month_year" name="end_month_year" type="text" value="{{$education->end_month_year}}"/>
+                    <input class="form-control" id="end_month_year_preformat" name="end_month_year_preformat" type="month" value="{{$education->end_month_year_preformat}}"/>
                 </div>
             </div>
 
@@ -39,90 +39,118 @@
         <button class="btn btn-lg btn-primary text-center" type="submit">Edit Education</button>
 
     </form>
-{{--    <hr/>--}}
-{{--    <h4 class="mt-3">Add Project Gallery Images</h4>--}}
-{{--    <div class="row mt-3">--}}
-{{--        <div class="col-md-12">--}}
-{{--            <form action="{{url('multi-upload')}}"--}}
-{{--                  class="dropzone" id="addImages">--}}
-{{--                @csrf--}}
-{{--                <input type="hidden" name="project_id" value="{{$project->id}}">--}}
-
-{{--            </form>--}}
-{{--        </div>--}}
-
-{{--    </div>--}}
-
-{{--    @if($project->images->count() > 0)--}}
-{{--        <h4 class="mt-3">Current Images</h4>--}}
-{{--    @endif--}}
-{{--    <div class="row mb-3">--}}
-
-{{--        @foreach($project->images as $image)--}}
-
-{{--            <div class="col-md-6 col-lg-3 mt-3 text-center">--}}
-{{--                <a href="/images/{{$image->file_name}}" target="_blank">--}}
-{{--                    <img class="img-fluid mx-auto" src="/images/thmb-{{$image->file_name}}">--}}
-{{--                </a>--}}
-
-{{--                <div class="card card-body">--}}
-
-{{--                    @if($image->description == null)--}}
-{{--                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="{{'#'.$image->id}}">Add Caption</button>--}}
-{{--                        <div id="{{$image->id}}" class="collapse">--}}
-
-{{--                            <form class="mt-2" method="POST" action="{{ route('image-update', [$image->id])}}">--}}
-{{--                                @csrf--}}
-{{--                                <input type="hidden" name="project_id" value="{{$project->id}}" />--}}
-
-{{--                                <div class="form-check">--}}
-{{--                                    <label class="form-check-label">--}}
-{{--                                        <input type="checkbox" name="main_img" class="form-check-input" value="">Set to Main Image--}}
-{{--                                    </label>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="form-group">--}}
-{{--                                    <textarea class="form-control" name="description"></textarea>--}}
-{{--                                </div>--}}
-{{--                                <button type="submit" class="btn btn-sm btn-success">Save</button>--}}
-
-{{--                            </form>--}}
-{{--                        </div>--}}
-{{--                    @else--}}
-
-{{--                        <h6>Current Caption:</h6><p>{{$image->description}}</p>--}}
-{{--                        <button type="button" class="btn btn-warning" data-toggle="collapse" data-target="{{'#'.$image->id}}">Edit Description</button>--}}
-{{--                        <div id="{{$image->id}}" class="collapse">--}}
-
-
-{{--                            <form class="mt-2" method="POST" action="{{ route('image-update', [$image->id])}}">--}}
-{{--                                @csrf--}}
-
-{{--                                <input type="hidden" name="project_id" value="{{$project->id}}" />--}}
-
-
-{{--                                <div class="form-check">--}}
-{{--                                    <input type="checkbox" name="main_img" value="{{$image->main_img}}" {{ $image->main_img == 1 ? 'checked' : '' }}>--}}
-{{--                                    <label class="form-check-label" for="main_img">Set to Main Image</label>--}}
-{{--                                </div>--}}
 
 
 
-{{--                                <div class="form-group">--}}
-{{--                                    <textarea class="form-control" name="description">{{$image->description}}</textarea>--}}
-{{--                                </div>--}}
-{{--                                <button type="submit" class="btn btn-sm btn-success">Save</button>--}}
-{{--                            </form>--}}
-{{--                        </div>--}}
+    @if($degrees->count() > 0)
+        <hr>
+    <h2>Degrees</h2>
+        <div class="row">
+    @foreach($degrees as $degree)
 
-{{--                    @endif--}}
 
-{{--                </div>--}}
 
-{{--            </div>--}}
+            <div class="col-md-6 col-lg-6 mt-3 text-center">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{$degree->major}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Completed: {{$degree->completed_month_year_format}}</h6>
+                    <p class="card-text">{{$degree->gpa}} GPA, {{$degree->honors_info}}</p>
+                    <a href="/education/degree/edit-degree-certificate/{{$degree->id}}" class="card-link">Edit Degree</a>
+                </div>
+            </div>
+            </div>
 
-{{--        @endforeach--}}
 
-{{--    </div>--}}
+
+    @endforeach
+        </div>
+
+    <hr>
+    @endif
+
+    @if($certificates->count() > 0)
+    <h2>Certificates</h2>
+    <div class="row">
+    @foreach($certificates as $cert)
+
+
+            <div class="col-md-6 col-lg-6 mt-3 text-center">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{$cert->major}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Completed: {{$cert->completed_month_year_format}}</h6>
+                    <p class="card-text">{{$cert->honors_info}}</p>
+                    <a href="/education/degree/edit-degree-certificate/{{$cert->id}}" class="card-link">Edit Certificate</a>
+                </div>
+            </div>
+            </div>
+
+
+    @endforeach
+    </div>
+
+    @endif
+
+    <hr>
+
+
+    <h1>Add Degree or Certificate</h1>
+    <form class="mb-3" method="POST" action="{{ route('/education/create-certificate-diploma') }}">
+        @csrf
+
+        <input class="form-control" id="school_id" value="{{$education->id}}" name="school_id" type="hidden"/>
+
+        <div class="form-row">
+
+            <div class="col">
+                <div class="form-group">
+                    <label for="degree_or_certificate">Degree or Certificate</label>
+                    <select class="form-control" id="degree_or_certificate" name="degree_or_certificate">
+                        <option selected>Choose Degree or Certificate</option>
+                        <option value="degree">Degree</option>
+                        <option value="certificate">Certificate</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col">
+        <div class="form-group">
+            <label for="major">Major</label>
+            <input class="form-control" id="major" name="major" type="text"/>
+        </div>
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="col">
+                <div class="form-group">
+                    <label for="gpa">GPA</label>
+                    <input class="form-control" id="gpa" name="gpa" step="0.01" value="0.00" placeholder="0.00" type="number"/>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <label for="completed_month_year">Completion Month & Year</label>
+                    <input class="form-control" id="completed_month_year" name="completed_month_year" type="month"/>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="honors_info">Honors Info</label>
+            <textarea class="form-control" id="honors_info" name="honors_info"></textarea>
+        </div>
+
+
+
+
+        <button class="btn btn-lg btn-primary text-center" type="submit">Create Degree or Certificate</button>
+
+    </form>
 
 @endsection

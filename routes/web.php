@@ -34,6 +34,19 @@ Route::get('/education/edit-education/{id}', 'EducationController@edit')->name('
 Route::patch('/education/edit-education/{id}', 'EducationController@update')->name('/education/education-update')->middleware('power');
 
 
+/// create certficate-diploma
+///  /education/create-certificate-diploma
+Route::post('/education/create-certificate-diploma', 'EducationController@storeCertificateDiploma')->name('/education/create-certificate-diploma')->middleware('power');
+
+
+// edit certificate/diploma view
+Route::get('/education/degree/edit-degree-certificate/{id}', 'EducationController@editDegreeCertificate')->name('/education/degree/edit-degree-certificate/{id}')->middleware('power');
+
+
+// update certificate/diploma view
+Route::patch('/education/degree/edit-degree-certificate/{id}', 'EducationController@updateDegreeCertificate')->name('/education/degree/degree-certificate-update')->middleware('power');
+
+
 //projects index page and root/home route
 Route::get('/projects', 'ProjectsController@index')->name('/projects')->middleware('power');
 

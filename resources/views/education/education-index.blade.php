@@ -2,7 +2,7 @@
 
 @section('title', 'Manage Education')
 @section('content')
-    <h1>Manage Education</h1>
+    <h1><i class="fas fa-user-graduate"></i> Manage Education Endpoints</h1>
 
     @foreach($education as $edu)
 

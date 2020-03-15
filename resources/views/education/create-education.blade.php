@@ -19,15 +19,15 @@
             <div class="col">
 
                 <div class="form-group">
-                    <label for="project_url">Start Month & Year</label>
-                    <input class="form-control" id="start_month_year" name="start_month_year" type="text"/>
+                    <label for="start_month_year_preformat">Start Month & Year</label>
+                    <input class="form-control" id="start_month_year_preformat" name="start_month_year_preformat" type="month"/>
                 </div>
             </div>
 
             <div class="col">
                 <div class="form-group">
-                    <label for="project_repo">End Month & Year</label>
-                    <input class="form-control" id="end_month_year" name="end_month_year" type="text"/>
+                    <label for="end_month_year_preformat">End Month & Year</label>
+                    <input class="form-control" id="end_month_year_preformat" name="end_month_year_preformat" type="month"/>
                 </div>
             </div>
 

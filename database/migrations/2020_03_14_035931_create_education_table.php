@@ -17,8 +17,11 @@ class CreateEducationTable extends Migration
             $table->bigIncrements('id');
             $table->string('school_name');
             $table->longText('details');
-            $table->string('start_month_year')->nullable();
-            $table->string('end_month_year')->nullable();
+            $table->string('start_month_year_preformat')->nullable();
+            $table->string('start_month_year_format')->nullable();
+            $table->string('end_month_year_preformat')->nullable();
+            $table->string('end_month_year_format')->nullable();
+
             $table->string('logo')->nullable();
             $table->timestamps();
         });

@@ -38,5 +38,6 @@ Route::get('portfolio-project/{id}', function($id) {
 Route::get('education', function() {
     // If the Content-Type and Accept headers are set to 'application/json',
     // this will return a JSON structure. This will be cleaned up later.
-    return Education::with('degrees')->get();
+    return Education::with('education_degrees', 'education_certificates')->get();
+
 });

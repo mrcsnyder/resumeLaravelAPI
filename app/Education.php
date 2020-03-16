@@ -17,4 +17,14 @@ class Education extends Model
         return $this->hasMany(Degree::class);
     }
 
+    // return the degrees for
+    public function education_degrees() {
+        return $this->degrees()->where('degree_or_certificate','=', 'degree');
+    }
+
+    // return the degrees for
+    public function education_certificates() {
+        return $this->degrees()->where('degree_or_certificate','=', 'certificate');
+    }
+
 }

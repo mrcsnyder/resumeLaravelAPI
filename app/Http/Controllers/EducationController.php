@@ -7,6 +7,7 @@ use App\Education;
 use App\Degree;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -32,6 +33,26 @@ class EducationController extends Controller
 
         $edu = new Education();
         $edu->school_name = $request->input('school_name');
+
+        //get the file from the edit post page request...
+        $file = $request->file('logo');
+
+        //set the file name
+        $filename = uniqid(). $file->getClientOriginalName();
+
+        //move the file to correct location
+        $file->move('images/', $filename);
+
+        //here is where I need to add the thumbnail also....
+      //  $thumb_string="thmb-".$filename;
+
+        //image intervention creating different sized images
+      //  Image::make( public_path('images/'.$filename))->resize(430, 296)->save('images/'.$thumb_string);
+
+        //save school/institution logo filename to db
+        $edu->logo = $filename;
+
+
         $edu->details = $request->input('details');
 
         //save preformatted start date (i.e. '2017-08' to start_month_year_preformat
@@ -92,6 +113,26 @@ class EducationController extends Controller
         //update all of the project attributes
         $edu->update($request->all());
 
+
+        $filename ='';
+
+        if($request->hasFile('logo')){
+
+            $updatedImg = $request->file('logo');
+            $filename = uniqid(). $updatedImg->getClientOriginalName();
+            $updatedImg->move('images/', $filename);
+
+            //TODO: add this if I find I want to add predefined dimensions for logo
+//            $thumb_string="md-img-".$filename;
+//            Image::make( public_path('images/'.$filename))->resize(600, 270)->save('images/'.$thumb_string);
+        }
+
+        if($filename > 0 ){
+            $edu->logo = $filename;
+        }
+
+
+        //TODO: add check here for if preformat has change for both start and end.  Extract this to its own method?
         //save preformatted start date (i.e. '2017-08' to start_month_year_preformat
         $edu->start_month_year_preformat = $request->input('start_month_year_preformat');
 

@@ -6,12 +6,32 @@
 
     <h1>Editing <span class="text-muted">'{{$education->school_name}}'</span></h1>
 
-    <form method="POST" action="{{ route('/education/education-update', [$education->id])}}">
+    <form method="POST" action="{{ route('/education/education-update', [$education->id])}}" enctype="multipart/form-data">
         <input name="_method" type="hidden" value="PATCH">
         @csrf
 
+        <div class="form-group">
         <label for="">School Name</label>
         <input class="form-control" id="school_name" name="school_name" type="text" value="{{$education->school_name}}"/>
+        </div>
+
+        <div class="form-group">
+
+            <label>Current Logo:</label>
+            <img class="img-responsive thumbnail" src="../../images/{{ $education->logo}}">
+        </div>
+
+        <div class="form-group">
+
+        <label>Update Logo</label>
+        <div class="form-group">
+            <input class="form-control" type="file" name="logo" id="logo" onchange="readURL(this);"/>
+        </div>
+
+        <div id="image_preview">
+            <img id="img_logo" class="img-responsive thumbnail" src="#" alt="uploaded logo">
+        </div>
+        </div>
 
         <div class="form-group">
             <label for="intro">Description</label>
@@ -36,19 +56,15 @@
 
         </div>
 
-        <button class="btn btn-lg btn-primary text-center" type="submit">Edit Education</button>
+        <button class="btn btn-lg btn-dark text-center" type="submit">Update Education</button>
 
     </form>
-
-
 
     @if($degrees->count() > 0)
         <hr>
     <h2>Degrees</h2>
         <div class="row">
     @foreach($degrees as $degree)
-
-
 
             <div class="col-md-6 col-lg-6 mt-3 text-center">
             <div class="card">
@@ -60,8 +76,6 @@
                 </div>
             </div>
             </div>
-
-
 
     @endforeach
         </div>
@@ -146,11 +160,13 @@
             <textarea class="form-control" id="honors_info" name="honors_info"></textarea>
         </div>
 
-
-
-
         <button class="btn btn-lg btn-primary text-center" type="submit">Create Degree or Certificate</button>
 
     </form>
 
+@endsection
+
+
+@section('scripts')
+    <script  src="/js/image_upload.js"></script>
 @endsection

@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 
 use App\Project;
 
+use App\Education;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,4 +32,11 @@ Route::get('portfolio-projects', function() {
 Route::get('portfolio-project/{id}', function($id) {
     return Project::find($id)->images;
    // return Project::find($id)->all_other_images;
+});
+
+
+Route::get('education', function() {
+    // If the Content-Type and Accept headers are set to 'application/json',
+    // this will return a JSON structure. This will be cleaned up later.
+    return Education::with('degrees')->get();
 });

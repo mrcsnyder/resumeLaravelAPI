@@ -3,12 +3,21 @@
 @section('content')
 
     <h1>Create Education</h1>
-    <form method="POST" action="{{ route('/education/create-education') }}">
+    <form method="POST" action="{{ route('/education/create-education') }}" enctype="multipart/form-data">
         @csrf
 
         <label for="">School Name</label>
         <input class="form-control" id="school_name" name="school_name" type="text"/>
 
+        <div class="form-group">
+            <div class="">
+                <input type="file" name="logo" id="logo" onchange="readURL(this);"/>
+            </div>
+        </div>
+
+        <div id="image_preview">
+            <img id="img_logo" class="img-fluid img-thumbnail" src="#" alt="uploaded image">
+        </div>
 
         <div class="form-group">
             <label for="details">Details</label>
@@ -42,3 +51,7 @@
 
 
 @endsection
+
+@section('scripts')
+    <script  src="/js/image_upload.js"></script>
+ @endsection

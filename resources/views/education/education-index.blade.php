@@ -6,7 +6,7 @@
 
     @foreach($education as $edu)
 
-        <p><a href="/education/edit-education/{{$edu->id}}">{{$edu->school_name}}</a></p>
+        <p><img class="img-responsive thumbnail" src="../../images/{{ $edu->logo}}"> <a href="/education/edit-education/{{$edu->id}}">{{$edu->school_name}}</a></p>
 
     @endforeach
 @endsection

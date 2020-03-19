@@ -6,6 +6,8 @@ use App\Project;
 
 use App\Education;
 
+use App\Award;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -39,5 +41,20 @@ Route::get('education', function() {
     // If the Content-Type and Accept headers are set to 'application/json',
     // this will return a JSON structure. This will be cleaned up later.
     return Education::with('education_degrees', 'education_certificates')->get();
+
+});
+
+
+
+Route::get('education-awards', function() {
+    // If the Content-Type and Accept headers are set to 'application/json',
+    // this will return a JSON structure. This will be cleaned up later.
+
+    $awards = Award::all();
+    $scholarships = $awards->where('award_type','=','scholarship');
+    $honors = $awards->where('award_type','=','honor_roll');
+
+    return compact('scholarships', 'honors');
+
 
 });

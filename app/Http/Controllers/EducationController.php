@@ -6,6 +6,8 @@ use App\Education;
 
 use App\Degree;
 
+use App\Award;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -17,8 +19,9 @@ class EducationController extends Controller
     public function index(){
 
         $education = Education::all();
+        $awards = Award::all();
 
-        return view('education.education-index', compact('education'));
+        return view('education.education-index', compact('education', 'awards'));
     }
 
     //education create action
@@ -233,6 +236,55 @@ class EducationController extends Controller
 
     }
 
+    //create award view action
+    public function createAward(){
+
+        return view('education.award.create-award');
+    }
+
+
+    //store created award action
+    public function storeAward(Request $request){
+
+        $award = new Award();
+
+        $award->award_name = $request->input('award_name');
+        $award->award_type = $request->input('award_type');
+        $award->awarded_by = $request->input('awarded_by');
+        $award->date_range = $request->input('date_range');
+        $award->save();
+
+        return redirect('/education')->with(Session::flash('message', 'Honor or Scholarship Successfully Added!'));
+
+
+    }
+
+    public function editAward($id){
+
+        $award= Award::findOrFail($id);
+
+        return view('education.award.edit-award', compact('award'));
+
+    }
+
+    //update & store Award action
+    public function updateAward(Request $request, $id){
+
+
+        //add some error handling
+        $award = Award::findOrFail($id);
+
+        //update all of the project attributes
+        $award->update($request->all());
+
+
+        //save the formatted date
+        $award->save();
+
+        //redirect back
+        return Redirect::back()->with(Session::flash('message', 'Award Successfully Updated!'));
+
+    }
 
 
 }

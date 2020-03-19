@@ -43,8 +43,23 @@ Route::post('/education/create-certificate-diploma', 'EducationController@storeC
 Route::get('/education/degree/edit-degree-certificate/{id}', 'EducationController@editDegreeCertificate')->name('/education/degree/edit-degree-certificate/{id}')->middleware('power');
 
 
-// update certificate/diploma view
+// update certificate/diploma route
 Route::patch('/education/degree/edit-degree-certificate/{id}', 'EducationController@updateDegreeCertificate')->name('/education/degree/degree-certificate-update')->middleware('power');
+
+
+// create award view
+Route::get('/education/award/create-award','EducationController@createAward')->name('/education/award/create-award')->middleware('power');
+
+// store created award post route
+Route::post('/education/create-award', 'EducationController@storeAward')->name('/education/create-award')->middleware('power');
+
+
+// edit certificate/diploma view
+Route::get('/education/award/edit-award/{id}', 'EducationController@editAward')->name('/education/award/edit-award/{id}')->middleware('power');
+
+//update/patch award route
+///education/award/award-update
+Route::patch('/education/award/edit-award/{id}', 'EducationController@updateAward')->name('/education/award/award-update')->middleware('power');
 
 
 //projects index page and root/home route

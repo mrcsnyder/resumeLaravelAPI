@@ -62,6 +62,30 @@ Route::get('/education/award/edit-award/{id}', 'EducationController@editAward')-
 Route::patch('/education/award/edit-award/{id}', 'EducationController@updateAward')->name('/education/award/award-update')->middleware('power');
 
 
+
+
+
+//work index page and root/home route
+Route::get('/work', 'WorkController@index')->name('/work')->middleware('power');
+
+//work create page
+Route::get('/work/create-work', 'WorkController@create')->name('/work/create-work')->middleware('power');
+
+
+//store newly created work post route
+Route::post('/work/create-work', 'WorkController@store')->name('/work/create-work')->middleware('power');
+
+
+
+
+//edit work get/view route
+Route::get('/work/edit-work/{id}', 'WorkController@edit')->name('/work/edit-work')->middleware('power');
+
+// update work
+Route::patch('/work/edit-work/{id}', 'WorkController@update')->name('/work/work-update')->middleware('power');
+
+
+
 //projects index page and root/home route
 Route::get('/projects', 'ProjectsController@index')->name('/projects')->middleware('power');
 

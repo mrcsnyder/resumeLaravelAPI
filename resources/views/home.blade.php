@@ -15,7 +15,7 @@
         <div class="col-sm-6 mb-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-briefcase"></i> Projects</h5>
+                    <h5 class="card-title"><i class="fas fa-laptop-code"></i> Projects</h5>
                     <p class="card-text">Use this portal to manage your Portfolio of developer projects API endpoint.</p>
                     <a href="/projects" class="btn btn-warning">Manage Projects</a>
                 </div>
@@ -25,9 +25,9 @@
         <div class="col-sm-6 mb-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-bacon"></i> Work History</h5>
+                    <h5 class="card-title"><i class="fas fa-briefcase"></i> Work History</h5>
                     <p class="card-text">Use this portal to manage your Work History API endpoint.</p>
-                    <a href="#" class="btn btn-success">Manage Work History</a>
+                    <a href="/work" class="btn btn-success">Manage Work History</a>
                 </div>
             </div>
         </div>

@@ -16,7 +16,7 @@ class CreateWorkTable extends Migration
         Schema::create('work', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('role');
-            $table->string('company_name');
+            $table->string('company_name')->nullable();
             $table->longText('description');
 
             $table->string('start_date_month_year_preformat')->nullable();

@@ -70,13 +70,12 @@ Route::get('skills', function() {
 
     $skills = Skill::all();
 
-    //collect each category for skills
-    $coding = $skills->where('category','=','coding');
-    $methods_devops = $skills->where('category','=','methods_devops');
-    $software = $skills->where('category','=','software');
-    $operating_systems = $skills->where('category','=','operating_systems');
-    $business = $skills->where('category','=','business');
+    //collect each category for skills, adding ->values ensures that all of these are actually arrays at api endpoint
+    $coding = $skills->where('category','=','coding')->values();
+    $methods_devops = $skills->where('category','=','methods_devops')->values();
+    $software = $skills->where('category','=','software')->values();
+    $operating_systems = $skills->where('category','=','operating_systems')->values();
+    $business = $skills->where('category','=','business')->values();
 
-    return compact('coding', 'methods_devops', 'software', 'operating_systems', 'business');
-
+    return array('coding' => $coding, 'methods_devops' => $methods_devops ,'software' => $software, 'operating_systems' => $operating_systems, 'business' => $business);
 });

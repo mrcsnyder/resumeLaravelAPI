@@ -86,6 +86,25 @@ Route::patch('/work/edit-work/{id}', 'WorkController@update')->name('/work/work-
 
 
 
+//skill create page route
+//createSkill
+Route::get('/work/skill/create-skill', 'WorkController@createSkill')->name('/work/skill/create-skill')->middleware('power');
+
+
+//store newly created work post route
+Route::post('/work/skill/create-skill', 'WorkController@storeSkill')->name('/work/skill/create-skill')->middleware('power');
+
+
+
+
+//edit skill get/view route
+Route::get('/work/skill/edit-skill/{id}', 'WorkController@editSkill')->name('/work/skill/edit-skill')->middleware('power');
+
+// update skill
+Route::patch('/work/skill/edit-skill/{id}', 'WorkController@updateSkill')->name('/work/skill/skill-update')->middleware('power');
+
+
+
 //projects index page and root/home route
 Route::get('/projects', 'ProjectsController@index')->name('/projects')->middleware('power');
 

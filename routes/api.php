@@ -10,6 +10,8 @@ use App\Award;
 
 use App\Work;
 
+use App\Skill;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -58,5 +60,23 @@ Route::get('work', function() {
     // If the Content-Type and Accept headers are set to 'application/json',
     // this will return a JSON structure. This will be cleaned up later.
     return Work::orderBy('created_at', 'DESC')->get();
+
+});
+
+
+Route::get('skills', function() {
+    // If the Content-Type and Accept headers are set to 'application/json',
+    // this will return a JSON structure. This will be cleaned up later.
+
+    $skills = Skill::all();
+
+    //collect each category for skills
+    $coding = $skills->where('category','=','coding');
+    $methods_devops = $skills->where('category','=','methods_devops');
+    $software = $skills->where('category','=','software');
+    $operating_systems = $skills->where('category','=','operating_systems');
+    $business = $skills->where('category','=','business');
+
+    return compact('coding', 'methods_devops', 'software', 'operating_systems', 'business');
 
 });

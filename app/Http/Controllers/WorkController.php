@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Work;
+use App\Skill;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -15,7 +17,26 @@ class WorkController extends Controller
 
         $work = Work::all();
 
-        return view('work.work-index', compact('work'));
+        $skills = Skill::all();
+
+        $coding = $skills->where('category','=','coding');
+
+        $methods_devops = $skills->where('category','=','methods_devops');
+
+        $software = $skills->where('category','=','software');
+
+        $operating_systems = $skills->where('category','=','operating_systems');
+        $business = $skills->where('category','=','business');
+
+
+        return view('work.work-index', compact(
+            'work',
+            'coding',
+            'methods_devops',
+            'operating_systems',
+            'software',
+            'business'
+        ));
     }
 
 
@@ -130,6 +151,58 @@ class WorkController extends Controller
         return Redirect::back()->with(Session::flash('message', 'Work Successfully Updated!'));
 
     }
+
+
+    //create skill view action
+    public function createSkill(){
+
+        return view('work.skill.create-skill');
+    }
+
+
+    //store skill post action
+
+    public function storeSkill(Request $request){
+
+        $skill = new Skill();
+        $skill->skill = $request->input('skill');
+        $skill->category = $request->input('category');
+        $skill->rating = $request->input('rating');
+        $skill->save();
+
+
+        //redirect back with message for users!
+        Session::flash('message', 'Skill Successfully Added!');
+        return redirect('/work');
+
+    }
+
+
+    //update skill view action
+
+    public function editSkill($id){
+        $skill = Skill::findOrFail($id);
+
+    return view('work.skill.edit-skill', compact('skill'));
+
+    }
+
+    public function updateSkill(Request $request, $id) {
+
+
+        $skill = Skill::findOrFail($id);
+
+
+        //update all of the work attributes
+        $skill->update($request->all());
+
+        //redirect back
+        return Redirect::back()->with(Session::flash('message', 'Skill Successfully Updated!'));
+
+    }
+
+
+
 
 
 }

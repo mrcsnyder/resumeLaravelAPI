@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="bfc13655-5c50-4f75-aee6-377f140cc187" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,11 +140,19 @@
       <recent name="$PROJECT_DIR$/resources/views/layouts/partials" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JavaScript Debug.PersonalController.php">
+    <configuration name="PersonalController.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/resumeLaravelAPI/Http/Controllers/PersonalController.php" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.PersonalController.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -167,7 +177,7 @@
       <option name="presentableId" value="Default" />
       <updated>1583039113117</updated>
       <workItem from="1583039114438" duration="19564000" />
-      <workItem from="1583117364200" duration="78102000" />
+      <workItem from="1583117364200" duration="87886000" />
     </task>
     <task id="LOCAL-00001" summary="updating api access points">
       <created>1583120993219</created>
@@ -207,17 +217,69 @@
       <screen x="0" y="23" width="1440" height="825" />
     </state>
     <state x="563" y="276" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.825@0.23.1440.825" timestamp="1583117526734" />
-    <state x="506" y="219" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1584833476493">
+    <state x="506" y="219" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1585285481103">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state x="506" y="219" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.826@0.23.1440.826" timestamp="1584833476493" />
+    <state x="506" y="219" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.826@0.23.1440.826" timestamp="1585285481103" />
     <state x="579" y="53" key="CommitChangelistDialog2" timestamp="1583120992921">
       <screen x="0" y="23" width="1440" height="825" />
     </state>
     <state x="579" y="53" key="CommitChangelistDialog2/0.23.1440.825@0.23.1440.825" timestamp="1583120992921" />
+    <state width="1276" height="214" key="GridCell.Tab.0.bottom" timestamp="1585279449985">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state width="1276" height="214" key="GridCell.Tab.0.bottom/0.23.1440.826@0.23.1440.826" timestamp="1585279449985" />
+    <state width="1276" height="214" key="GridCell.Tab.0.center" timestamp="1585279449984">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state width="1276" height="214" key="GridCell.Tab.0.center/0.23.1440.826@0.23.1440.826" timestamp="1585279449984" />
+    <state width="1276" height="214" key="GridCell.Tab.0.left" timestamp="1585279449983">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state width="1276" height="214" key="GridCell.Tab.0.left/0.23.1440.826@0.23.1440.826" timestamp="1585279449983" />
+    <state width="1276" height="214" key="GridCell.Tab.0.right" timestamp="1585279449985">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state width="1276" height="214" key="GridCell.Tab.0.right/0.23.1440.826@0.23.1440.826" timestamp="1585279449985" />
+    <state width="1276" height="214" key="GridCell.Tab.1.bottom" timestamp="1585279449987">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state width="1276" height="214" key="GridCell.Tab.1.bottom/0.23.1440.826@0.23.1440.826" timestamp="1585279449987" />
+    <state width="1276" height="214" key="GridCell.Tab.1.center" timestamp="1585279449986">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state width="1276" height="214" key="GridCell.Tab.1.center/0.23.1440.826@0.23.1440.826" timestamp="1585279449986" />
+    <state width="1276" height="214" key="GridCell.Tab.1.left" timestamp="1585279449986">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state width="1276" height="214" key="GridCell.Tab.1.left/0.23.1440.826@0.23.1440.826" timestamp="1585279449986" />
+    <state width="1276" height="214" key="GridCell.Tab.1.right" timestamp="1585279449986">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state width="1276" height="214" key="GridCell.Tab.1.right/0.23.1440.826@0.23.1440.826" timestamp="1585279449986" />
+    <state width="1276" height="214" key="GridCell.Tab.2.bottom" timestamp="1585279449989">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state width="1276" height="214" key="GridCell.Tab.2.bottom/0.23.1440.826@0.23.1440.826" timestamp="1585279449989" />
+    <state width="1276" height="214" key="GridCell.Tab.2.center" timestamp="1585279449988">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state width="1276" height="214" key="GridCell.Tab.2.center/0.23.1440.826@0.23.1440.826" timestamp="1585279449988" />
+    <state width="1276" height="214" key="GridCell.Tab.2.left" timestamp="1585279449987">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state width="1276" height="214" key="GridCell.Tab.2.left/0.23.1440.826@0.23.1440.826" timestamp="1585279449987" />
+    <state width="1276" height="214" key="GridCell.Tab.2.right" timestamp="1585279449988">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state width="1276" height="214" key="GridCell.Tab.2.right/0.23.1440.826@0.23.1440.826" timestamp="1585279449988" />
     <state x="596" y="192" key="Vcs.Push.Dialog.v2" timestamp="1583120995208">
       <screen x="0" y="23" width="1440" height="825" />
     </state>
     <state x="596" y="192" key="Vcs.Push.Dialog.v2/0.23.1440.825@0.23.1440.825" timestamp="1583120995208" />
+    <state x="413" y="173" width="670" height="676" key="search.everywhere.popup" timestamp="1585277421021">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state x="413" y="173" width="670" height="676" key="search.everywhere.popup/0.23.1440.826@0.23.1440.826" timestamp="1585277421021" />
   </component>
 </project>

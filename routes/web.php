@@ -105,6 +105,23 @@ Route::patch('/work/skill/edit-skill/{id}', 'WorkController@updateSkill')->name(
 
 
 
+
+//personal index page and root/home route
+Route::get('/personal', 'PersonalController@index')->name('/personal')->middleware('power');
+
+Route::get('/personal/create-personal', 'PersonalController@create')->name('/personal/create-personal')->middleware('power');
+
+//store newly created personal details post route
+Route::post('/personal/create-personal', 'PersonalController@store')->name('/personal/create-personal')->middleware('power');
+
+//edit personal get/view route
+Route::get('/personal/edit-personal/{id}', 'PersonalController@edit')->name('/personal/edit-personal')->middleware('power');
+
+// update personal
+Route::patch('/personal/edit-personal/{id}', 'PersonalController@update')->name('/personal/personal-update')->middleware('power');
+
+
+
 //projects index page and root/home route
 Route::get('/projects', 'ProjectsController@index')->name('/projects')->middleware('power');
 

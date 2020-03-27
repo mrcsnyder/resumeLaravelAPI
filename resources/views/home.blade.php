@@ -37,7 +37,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><i class="fas fa-guitar"></i> Personal Details</h5>
                     <p class="card-text">Use this portal to manage your Personal Details API endpoint.</p>
-                    <a href="#" class="btn btn-danger">Manage Personal Details</a>
+                    <a href="/personal" class="btn btn-danger">Manage Personal Details</a>
                 </div>
             </div>
         </div>

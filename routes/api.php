@@ -1,6 +1,9 @@
 <?php
 
+
 use Illuminate\Http\Request;
+
+use App\Personal;
 
 use App\Project;
 
@@ -78,4 +81,15 @@ Route::get('skills', function() {
     $business = $skills->where('category','=','business')->values();
 
     return array('coding' => $coding, 'methods_devops' => $methods_devops ,'software' => $software, 'operating_systems' => $operating_systems, 'business' => $business);
+});
+
+
+
+Route::get('personal-details', function() {
+    // If the Content-Type and Accept headers are set to 'application/json',
+    // this will return a JSON structure. This will be cleaned up later.
+
+    //possibly a neater way to do this:
+    return Personal::take(1)->get();
+
 });

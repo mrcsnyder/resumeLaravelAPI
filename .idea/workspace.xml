@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bfc13655-5c50-4f75-aee6-377f140cc187" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/resumeLaravelAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/resumeLaravelAPI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,6 +115,8 @@
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
       <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
     </include_path>
   </component>
   <component name="ProjectId" id="1YVsUiEolTKnCCL63a83GssPQx2" />
@@ -177,7 +182,7 @@
       <option name="presentableId" value="Default" />
       <updated>1583039113117</updated>
       <workItem from="1583039114438" duration="19564000" />
-      <workItem from="1583117364200" duration="87886000" />
+      <workItem from="1583117364200" duration="90099000" />
     </task>
     <task id="LOCAL-00001" summary="updating api access points">
       <created>1583120993219</created>
@@ -217,9 +222,10 @@
       <screen x="0" y="23" width="1440" height="825" />
     </state>
     <state x="563" y="276" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.825@0.23.1440.825" timestamp="1583117526734" />
-    <state x="506" y="219" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1585285481103">
-      <screen x="0" y="23" width="1440" height="826" />
+    <state x="506" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1585713068992">
+      <screen x="0" y="23" width="1440" height="823" />
     </state>
+    <state x="506" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.823@0.23.1440.823" timestamp="1585713068992" />
     <state x="506" y="219" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.826@0.23.1440.826" timestamp="1585285481103" />
     <state x="579" y="53" key="CommitChangelistDialog2" timestamp="1583120992921">
       <screen x="0" y="23" width="1440" height="825" />

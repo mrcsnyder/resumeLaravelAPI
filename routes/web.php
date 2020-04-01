@@ -144,3 +144,8 @@ Route::post('/projects/multi-upload', 'ProjectsController@multiImageUpload')->na
 
 //update gallery image caption route:
 Route::post('/projects/image-update/{id}', 'ProjectsController@updateImageCaption')->name('/projects/image-update')->middleware('power');
+
+
+//email contact resume route
+Route::post('/resume/send-contact', 'HomeController@sendFromContact')->name('/resume/send-contact');
+

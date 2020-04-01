@@ -25,4 +25,21 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function sendFromContact(SendContactEmailRequest $request){
+
+        //sends to site owner
+        \Mail::send('emails.contact',
+            array(
+                'user_message' => $request->get('message')
+            ), function($message)
+            {
+                $message->from('resume@thisdudecodes.com', 'resume.thisdudecodes.com');
+                $message->to('snyder.chris.m@gmail.com', 'resume.thisdudecode')->subject('Resume Contact!');
+
+
+            });
+
+        return response()->json(['success'=>true]);
+    }
 }

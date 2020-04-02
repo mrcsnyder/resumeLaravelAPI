@@ -27,6 +27,8 @@ class SendContactEmailRequest extends FormRequest
 
             return [
 
+                'name' => 'required',
+                'email' => 'required',
                 'message' => 'required',
                 'captyResponse'=>['required', new ValidRecaptcha],
             ];

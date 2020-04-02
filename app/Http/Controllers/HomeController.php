@@ -30,7 +30,7 @@ class HomeController extends Controller
     public function sendFromContact(SendContactEmailRequest $request){
 
         //sends to site owner
-        \Mail::send('emails.contact',
+        \Mail::send('emails.resume',
             array(
                 'name' => $request->get('name'),
                 'email' => $request->get('email'),

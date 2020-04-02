@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bfc13655-5c50-4f75-aee6-377f140cc187" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/SendContactEmailRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/SendContactEmailRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/emails/resume.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/resume.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +178,7 @@
       <option name="presentableId" value="Default" />
       <updated>1583039113117</updated>
       <workItem from="1583039114438" duration="19564000" />
-      <workItem from="1583117364200" duration="95400000" />
+      <workItem from="1583117364200" duration="96088000" />
     </task>
     <task id="LOCAL-00001" summary="updating api access points">
       <created>1583120993219</created>

@@ -32,7 +32,10 @@ class HomeController extends Controller
         //sends to site owner
         \Mail::send('emails.contact',
             array(
-                'user_message' => $request->get('message')
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+                'user_message' => $request->get('message'),
+
             ), function($message)
             {
                 $message->from('resume@thisdudecodes.com', 'resume.thisdudecodes.com');

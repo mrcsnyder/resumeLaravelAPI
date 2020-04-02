@@ -20,6 +20,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
-        '/resume/send-contact',
+        'http://localhost:8080/*',
     ];
 }

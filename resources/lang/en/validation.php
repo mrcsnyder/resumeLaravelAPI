@@ -129,8 +129,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'captyResponse' => [
+            'required' => 'Sorry!  You must verify that you are a human with the reCAPTCHA!',
         ],
     ],
 

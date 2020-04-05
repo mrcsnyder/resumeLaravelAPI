@@ -24,6 +24,24 @@
             </div>
         </div>
 
+        <div class="form-row">
+            <div class="col">
+
+                <div class="form-group">
+                    <label for="git_source"><i class="fab fa-git-square fa-2x"></i> Git Host URL</label>
+                    <input class="form-control" id="git_source" name="git_source" type="text"/>
+                </div>
+            </div>
+
+            <div class="col">
+
+                <div class="form-group">
+                    <label for="linkedin"><i class="fab fa-linkedin fa-2x"></i> LinkedIn Profile URL</label>
+                    <input class="form-control" id="linkedin" name="linkedin" type="text"/>
+                </div>
+            </div>
+        </div>
+
         <div class="form-group">
 
             <label for="profile_image">Profile Image</label>

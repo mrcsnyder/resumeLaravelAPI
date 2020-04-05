@@ -19,6 +19,8 @@ class CreatePersonalTable extends Migration
             $table->string('current_role')->nullable();
             $table->string('profile_image')->nullable();
             $table->string('resume')->nullable();
+            $table->string('git_source')->nullable();
+            $table->string('linkedin')->nullable();
             $table->longText('professional_intro')->nullable();
             $table->longText('hobbies_interests')->nullable();
             $table->timestamps();

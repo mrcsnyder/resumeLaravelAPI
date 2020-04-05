@@ -37,7 +37,8 @@ class PersonalController extends Controller
 
         $personal->name = $request->input('name');
         $personal->current_role = $request->input('current_role');
-
+        $personal->git_source = $request->input('git_source');
+        $personal->linkedin = $request->input('linkedin');
 
         //get the file from the profile_image request...
         $profile_image = $request->file('profile_image');
@@ -93,10 +94,12 @@ class PersonalController extends Controller
 
 public function update(Request $request, $id){
 
-        $personal = Personal::findOrFail($id);
+    $personal = Personal::findOrFail($id);
 
     $personal->name = $request->input('name');
     $personal->current_role = $request->input('current_role');
+    $personal->git_source = $request->input('git_source');
+    $personal->linkedin = $request->input('linkedin');
     $personal->professional_intro = $request->input('professional_intro');
     $personal->hobbies_interests = $request->input('hobbies_interests');
 

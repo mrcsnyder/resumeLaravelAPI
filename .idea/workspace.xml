@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bfc13655-5c50-4f75-aee6-377f140cc187" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PersonalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PersonalController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_27_022031_create_personal_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_27_022031_create_personal_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/personal/create-personal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/personal/create-personal.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/personal/edit-personal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/personal/edit-personal.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -180,7 +177,7 @@
       <option name="presentableId" value="Default" />
       <updated>1583039113117</updated>
       <workItem from="1583039114438" duration="19564000" />
-      <workItem from="1583117364200" duration="99311000" />
+      <workItem from="1583117364200" duration="99778000" />
     </task>
     <task id="LOCAL-00001" summary="updating api access points">
       <created>1583120993219</created>

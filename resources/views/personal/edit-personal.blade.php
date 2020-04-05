@@ -3,6 +3,7 @@
 @section('content')
 
     <h1>Update Personal Details</h1>
+    <img src="/images/{{$personal->profile_image}}" id="portrait-img" alt="{{$personal->name}}" class="img-fluid portrait-about mx-auto d-block rounded-circle">
     <form class="mb-3" method="POST" action="{{ route('/personal/personal-update', [$personal->id])}}" enctype="multipart/form-data">
         <input name="_method" type="hidden" value="PATCH">
         @csrf

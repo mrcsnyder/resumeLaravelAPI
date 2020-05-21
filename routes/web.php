@@ -146,6 +146,9 @@ Route::post('/projects/multi-upload', 'ProjectsController@multiImageUpload')->na
 Route::post('/projects/image-update/{id}', 'ProjectsController@updateImageCaption')->name('/projects/image-update')->middleware('power');
 
 
+//delete gallery image and its caption
+Route::delete('/projects/project-image-delete/{id}', 'ProjectsController@destroy')->name('/projects/project-image-delete')->middleware('power');
+
 ////email contact resume route
 Route::post('/resume/send-contact', 'HomeController@sendFromContact')->name('/resume/send-contact');
 

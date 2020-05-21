@@ -139,4 +139,13 @@ class ProjectsController extends Controller
 
     }
 
+
+    public function destroy($id)
+    {
+
+        ProjectImage::destroy($id);
+
+        return redirect()->back()->with(Session::flash('message', 'Portfolio Gallery Image was deleted!'));
+    }
+
 }

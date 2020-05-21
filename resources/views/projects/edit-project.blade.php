@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h1>Editing <span class="text-muted">'{{$project->title}}'</span></h1>
+<h1>Editing <span class="text-muted">'{{$project->title}}'</span></h1>
 
 <form method="POST" action="{{ route('/projects/project-update', [$project->id])}}">
     <input name="_method" type="hidden" value="PATCH">
@@ -66,6 +66,11 @@
                 @foreach($project->images as $image)
 
                     <div class="col-md-6 col-lg-3 mt-3 text-center">
+                        <form method="POST" action="{{ route('/projects/project-image-delete', [$image->id])}}">
+                            <input name="_method" type="hidden" value="DELETE">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-danger mb-1">Delete</button>
+                        </form>
                         <a href="/images/{{$image->file_name}}" target="_blank">
                             <img class="img-fluid mx-auto" src="/images/thmb-{{$image->file_name}}">
                         </a>
@@ -103,7 +108,6 @@
                                     @csrf
 
                                     <input type="hidden" name="project_id" value="{{$project->id}}" />
-
 
                                     <div class="form-check">
                                         <input type="checkbox" name="main_img" value="{{$image->main_img}}" {{ $image->main_img == 1 ? 'checked' : '' }}>

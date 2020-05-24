@@ -45,7 +45,18 @@ Route::get('education', function() {
     // If the Content-Type and Accept headers are set to 'application/json',
     // this will return a JSON structure. This will be cleaned up later.
     return Education::with('education_degrees', 'education_certificates')->get();
+
 });
+
+
+Route::get('resume-pdf', function() {
+    // If the Content-Type and Accept headers are set to 'application/json',
+    // this will return a JSON structure. This will be cleaned up later.
+    return Personal::pluck('resume')->toJson();
+    
+});
+
+
 
 Route::get('education-awards', function() {
     // If the Content-Type and Accept headers are set to 'application/json',

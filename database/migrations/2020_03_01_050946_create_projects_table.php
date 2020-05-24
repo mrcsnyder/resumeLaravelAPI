@@ -16,7 +16,7 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->mediumText('intro');
+//            $table->mediumText('intro')->nullable(); do not need this
             $table->longText('full_detail');
             $table->string('project_url')->nullable();
             $table->string('project_repo')->nullable();

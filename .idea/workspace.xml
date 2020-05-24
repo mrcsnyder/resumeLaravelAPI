@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bfc13655-5c50-4f75-aee6-377f140cc187" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/default.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/projects/create-project.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projects/create-project.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/projects/edit-project.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projects/edit-project.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/projects/projects-index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projects/projects-index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_01_050946_create_projects_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_01_050946_create_projects_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +181,7 @@
       <workItem from="1583117364200" duration="100567000" />
       <workItem from="1586727021719" duration="402000" />
       <workItem from="1588296547982" duration="453000" />
-      <workItem from="1588999048129" duration="8830000" />
+      <workItem from="1588999048129" duration="9851000" />
     </task>
     <task id="LOCAL-00001" summary="updating api access points">
       <created>1583120993219</created>

@@ -6,17 +6,15 @@
 
 <h1>Editing <span class="text-muted">'{{$project->title}}'</span></h1>
 
+
+
 <form method="POST" action="{{ route('/projects/project-update', [$project->id])}}">
     <input name="_method" type="hidden" value="PATCH">
     @csrf
 
-    <label for="">Project Name</label>
+    <label for="">Project Name (Name &amp; One Line Description)</label>
     <input class="form-control" id="title" name="title" type="text" value="{{$project->title}}"/>
 
-    <div class="form-group">
-        <label for="intro">Intro</label>
-        <textarea class="form-control" id="intro" name="intro">{{$project->intro}}</textarea>
-    </div>
 
     <div class="form-group">
         <label for="full_detail">Detailed Explanation</label>
@@ -66,11 +64,17 @@
                 @foreach($project->images as $image)
 
                     <div class="col-md-6 col-lg-3 mt-3 text-center">
+
                         <form method="POST" action="{{ route('/projects/project-image-delete', [$image->id])}}">
                             <input name="_method" type="hidden" value="DELETE">
                             @csrf
                             <button type="submit" class="btn btn-sm btn-danger mb-1">Delete</button>
                         </form>
+
+                        @if($image->main_img == 1)
+                            <span class="text-muted"><i class="fas fa-star"></i> Main Image <i class="fas fa-star"></i><br/></span>
+                        @endif
+
                         <a href="/images/{{$image->file_name}}" target="_blank">
                             <img class="img-fluid mx-auto" src="/images/thmb-{{$image->file_name}}">
                         </a>
@@ -87,7 +91,7 @@
 
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input type="checkbox" name="main_img" class="form-check-input" value="">Set to Main Image
+                                                    <input type="checkbox" name="main_img" value="{{$image->main_img}}" {{ $image->main_img == 1 ? 'checked' : '' }}> Set to Main Image
                                                 </label>
                                             </div>
 
@@ -101,7 +105,7 @@
                                 @else
 
                             <h6>Current Caption:</h6><p>{{$image->description}}</p>
-                        <button type="button" class="btn btn-warning" data-toggle="collapse" data-target="{{'#'.$image->id}}">Edit Description</button>
+                        <button type="button" class="btn btn-warning" data-toggle="collapse" data-target="{{'#'.$image->id}}">Edit Caption</button>
                         <div id="{{$image->id}}" class="collapse">
 
                                 <form class="mt-2" method="POST" action="{{ route('/projects/image-update', [$image->id])}}">
@@ -111,7 +115,7 @@
 
                                     <div class="form-check">
                                         <input type="checkbox" name="main_img" value="{{$image->main_img}}" {{ $image->main_img == 1 ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="main_img">Set to Main Image</label>
+                                        <label class="form-check-label" for="main_img"> Set to Main Image</label>
                                     </div>
 
                                     <div class="form-group">

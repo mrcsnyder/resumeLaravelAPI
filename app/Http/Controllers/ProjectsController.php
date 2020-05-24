@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\MakeProjectRequest;
+
 use App\Project;
 
 use App\ProjectImage;
@@ -39,7 +41,7 @@ class ProjectsController extends Controller
         return view('projects.edit-project', compact('project'));
     }
 
-    public function store(Request $request) {
+    public function store(MakeProjectRequest $request) {
 
         $project = new Project();
         $project->title = $request->input('title');
@@ -56,7 +58,7 @@ class ProjectsController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(MakeProjectRequest $request, $id)
     {
 
      //add some error handling
@@ -140,12 +142,27 @@ class ProjectsController extends Controller
     }
 
 
-    public function destroy($id)
+//destroy individual Gallery image (from portfolio gallery images) action
+    public function destroyImage($id)
     {
 
         ProjectImage::destroy($id);
-
         return redirect()->back()->with(Session::flash('message', 'Portfolio Gallery Image was deleted!'));
+    }
+
+
+//destroy entire Project and related images (portfolio gallery images) action
+    public function destroyProject($id)
+    {
+
+        $project = Project::findOrFail($id);
+
+        $project->images()->delete();
+
+        $project->delete();
+
+//        Project::destroy($id);
+        return redirect()->back()->with(Session::flash('message', 'Project and all images are now deleted!'));
     }
 
 }

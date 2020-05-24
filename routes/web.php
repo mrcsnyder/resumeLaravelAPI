@@ -147,7 +147,14 @@ Route::post('/projects/image-update/{id}', 'ProjectsController@updateImageCaptio
 
 
 //delete gallery image and its caption
-Route::delete('/projects/project-image-delete/{id}', 'ProjectsController@destroy')->name('/projects/project-image-delete')->middleware('power');
+
+//delete entire project and related images route
+Route::delete('/projects/project-image-delete/{id}', 'ProjectsController@destroyImage')->name('/projects/project-image-delete')->middleware('power');
+
+//delete individual project image route
+Route::delete('/projects/project-delete/{id}', 'ProjectsController@destroyProject')->name('/projects/project-delete')->middleware('power');
+
+
 
 ////email contact resume route
 Route::post('/resume/send-contact', 'HomeController@sendFromContact')->name('/resume/send-contact');

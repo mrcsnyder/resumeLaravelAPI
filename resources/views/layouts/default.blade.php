@@ -16,12 +16,11 @@
 </head>
 <body>
 @include('layouts.partials.upper-nav')
+
+
 <div class="container mt-5">
-    @if(Session::has('message'))
-        <div class="alert alert-success mt-3">
-            <h5>{{Session::get('message')}}</h5>
-        </div>
-    @endif
+    @include('layouts.partials.validation')
+    @include('layouts.partials.message')
 
     @yield('content')
 

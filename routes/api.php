@@ -37,6 +37,15 @@ Route::get('portfolio-projects', function() {
     return Project::with('main_image')->get();
 });
 
+//testing all images endpoint:
+
+Route::get('portfolio-project-all',function(){
+
+    //get all project ids and the images
+    return Project::with('images')->select('id')->get();
+
+});
+
 Route::get('portfolio-project/{id}', function($id) {
     return Project::find($id)->all_other_images;
 });
@@ -53,7 +62,7 @@ Route::get('resume-pdf', function() {
     // If the Content-Type and Accept headers are set to 'application/json',
     // this will return a JSON structure. This will be cleaned up later.
     return Personal::pluck('resume')->toJson();
-    
+
 });
 
 

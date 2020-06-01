@@ -31,23 +31,28 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //API endpoint for portfolio projects and main image
-Route::get('portfolio-projects', function() {
-    // If the Content-Type and Accept headers are set to 'application/json',
-    // this will return a JSON structure. This will be cleaned up later.
-    return Project::with('main_image')->get();
-});
+//not in use
+//Route::get('portfolio-projects', function() {
+//    // If the Content-Type and Accept headers are set to 'application/json',
+//    // this will return a JSON structure. This will be cleaned up later.
+//    return Project::with('main_image')->get();
+//});
 
-//testing all images endpoint:
+
+
+//not in use
+//Route::get('portfolio-project/{id}', function($id) {
+//    return Project::find($id)->all_other_images;
+//});
+
+
+//all images endpoint - - this is the one in use:
 
 Route::get('portfolio-project-all',function(){
 
     //get all project ids and the images
-    return Project::with('images')->select('id')->get();
+    return Project::with('images')->select('id', 'title', 'full_detail', 'project_url', 'project_repo')->get();
 
-});
-
-Route::get('portfolio-project/{id}', function($id) {
-    return Project::find($id)->all_other_images;
 });
 
 Route::get('education', function() {

@@ -46,6 +46,25 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //});
 
 
+Route::get('all-data',function(){
+
+    $personal = Personal::take(1)->get();
+    $education = Education::with('education_degrees', 'education_certificates')->get();
+    $projects = Project::with('images')->select('id', 'title', 'full_detail', 'project_url', 'project_repo')->get();
+
+
+
+    $allData = [];
+
+     array_push( $allData, $personal, $education, $projects);
+    //$allData = array_push($allData, $personal);
+
+    //get all project ids and the images
+    return $allData;
+
+});
+
+
 //all images endpoint - - this is the one in use:
 
 Route::get('portfolio-project-all',function(){

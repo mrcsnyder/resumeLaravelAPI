@@ -8,6 +8,8 @@
         <input name="_method" type="hidden" value="PATCH">
         @csrf
 
+        <input type="hidden" name="user_id" value="{{$user_id}}"/>
+
         <div class="form-row">
             <div class="col">
 

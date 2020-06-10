@@ -3,9 +3,11 @@
 @section('content')
 
     <h1>Add Personal Details</h1>
+
     <form method="POST" action="{{ route('/personal/create-personal') }}" enctype="multipart/form-data">
         @csrf
 
+        <input type="hidden" value="{{$user_id}}" name="user_id"/>
         <div class="form-row">
             <div class="col">
 

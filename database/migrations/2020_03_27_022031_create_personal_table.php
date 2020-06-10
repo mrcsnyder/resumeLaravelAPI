@@ -15,6 +15,7 @@ class CreatePersonalTable extends Migration
     {
         Schema::create('personal', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedInteger('user_id')->unique();
             $table->string('name')->nullable();
             $table->string('current_role')->nullable();
             $table->string('profile_image')->nullable();

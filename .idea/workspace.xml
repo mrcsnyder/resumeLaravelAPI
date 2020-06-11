@@ -3,11 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="bfc13655-5c50-4f75-aee6-377f140cc187" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PersonalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PersonalController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_27_022031_create_personal_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_27_022031_create_personal_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/personal/create-personal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/personal/create-personal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/personal/edit-personal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/personal/edit-personal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/personal/personal-index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/personal/personal-index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Education.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Education.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EducationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EducationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Personal.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Personal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_14_035931_create_education_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_14_035931_create_education_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/education/create-education.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/education/create-education.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/education/edit-education.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/education/edit-education.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -185,7 +186,8 @@
       <workItem from="1583117364200" duration="100567000" />
       <workItem from="1586727021719" duration="402000" />
       <workItem from="1588296547982" duration="453000" />
-      <workItem from="1588999048129" duration="20840000" />
+      <workItem from="1588999048129" duration="21030000" />
+      <workItem from="1591845400687" duration="6543000" />
     </task>
     <task id="LOCAL-00001" summary="updating api access points">
       <created>1583120993219</created>
@@ -221,20 +223,16 @@
     <option name="LAST_COMMIT_MESSAGE" value="updating api access points" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="563" y="276" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583117526734">
-      <screen x="0" y="23" width="1440" height="825" />
+    <state x="287" y="57" key="#Notifications" timestamp="1591846623992">
+      <screen x="0" y="23" width="1440" height="814" />
     </state>
-    <state x="563" y="276" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.825@0.23.1440.825" timestamp="1583117526734" />
+    <state x="287" y="57" key="#Notifications/0.23.1440.814@0.23.1440.814" timestamp="1591846623992" />
     <state x="506" y="215" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1590275903529">
       <screen x="0" y="23" width="1440" height="812" />
     </state>
     <state x="506" y="215" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.812@0.23.1440.812" timestamp="1590275903529" />
     <state x="506" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.823@0.23.1440.823" timestamp="1585713068992" />
     <state x="506" y="219" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.826@0.23.1440.826" timestamp="1585285481103" />
-    <state x="579" y="53" key="CommitChangelistDialog2" timestamp="1583120992921">
-      <screen x="0" y="23" width="1440" height="825" />
-    </state>
-    <state x="579" y="53" key="CommitChangelistDialog2/0.23.1440.825@0.23.1440.825" timestamp="1583120992921" />
     <state width="1276" height="214" key="GridCell.Tab.0.bottom" timestamp="1585279449985">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
@@ -283,10 +281,6 @@
       <screen x="0" y="23" width="1440" height="826" />
     </state>
     <state width="1276" height="214" key="GridCell.Tab.2.right/0.23.1440.826@0.23.1440.826" timestamp="1585279449988" />
-    <state x="596" y="192" key="Vcs.Push.Dialog.v2" timestamp="1583120995208">
-      <screen x="0" y="23" width="1440" height="825" />
-    </state>
-    <state x="596" y="192" key="Vcs.Push.Dialog.v2/0.23.1440.825@0.23.1440.825" timestamp="1583120995208" />
     <state x="413" y="173" width="670" height="676" key="search.everywhere.popup" timestamp="1585277421021">
       <screen x="0" y="23" width="1440" height="826" />
     </state>

@@ -15,6 +15,7 @@ class CreateEducationTable extends Migration
     {
         Schema::create('education', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedInteger('personal_id');
             $table->string('school_name');
             $table->longText('details');
             $table->string('start_month_year_preformat')->nullable();

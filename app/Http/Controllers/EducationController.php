@@ -8,6 +8,8 @@ use App\Degree;
 
 use App\Award;
 
+use App\Personal;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -18,7 +20,18 @@ class EducationController extends Controller
     //education index action
     public function index(){
 
-        $education = Education::all();
+        //get currently signed in user
+        $user = auth()->user();
+
+        //store users id
+        $user_id = $user->id;
+
+        $personal = Personal::where('user_id','=',$user_id)->first();
+        $personal_id = $personal->id;
+
+
+        $education = Education::where('personal_id','=',$personal_id)->get();
+
         $awards = Award::all();
 
         return view('education.education-index', compact('education', 'awards'));
@@ -27,7 +40,16 @@ class EducationController extends Controller
     //education create action
     public function create() {
 
-        return view('education.create-education');
+        //get currently signed in user
+        $user = auth()->user();
+
+        //store users id
+        $user_id = $user->id;
+
+        $personal = Personal::where('user_id','=',$user_id)->first();
+        $personal_id = $personal->id;
+
+        return view('education.create-education', compact('personal_id'));
 
     }
 
@@ -35,6 +57,8 @@ class EducationController extends Controller
     public function store(Request $request) {
 
         $edu = new Education();
+
+        $edu->personal_id = $request->input('personal_id');
         $edu->school_name = $request->input('school_name');
 
         //get the file from the edit post page request...
@@ -96,13 +120,22 @@ class EducationController extends Controller
     //edit education view action
     public function edit($id){
 
+        //get currently signed in user
+        $user = auth()->user();
+
+        //store users id
+        $user_id = $user->id;
+
+        $personal = Personal::where('user_id','=',$user_id)->first();
+        $personal_id = $personal->id;
+
         //get education collection
         $education = Education::findOrFail($id);
         //get degrees from education collection
         $degrees = $education->degrees->where('degree_or_certificate','=','degree');
         $certificates = $education->degrees->where('degree_or_certificate','=','certificate');
 
-        return view('education.edit-education', compact('education', 'degrees', 'certificates'));
+        return view('education.edit-education', compact('education', 'degrees', 'certificates', 'personal_id'));
     }
 
 

@@ -46,6 +46,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //});
 
 
+
+Route::get('personal-with-education',function(){
+
+    //get all project ids and the images
+    return Personal::with('education')->get();
+
+});
+
+
 Route::get('all-data',function(){
 
     $personal = Personal::take(1)->get();

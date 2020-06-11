@@ -6,6 +6,8 @@
     <form method="POST" action="{{ route('/education/create-education') }}" enctype="multipart/form-data">
         @csrf
 
+        <input type="hidden" name="personal_id" value="{{$personal_id}}"/>
+
         <label for="">School Name</label>
         <input class="form-control" id="school_name" name="school_name" type="text"/>
 

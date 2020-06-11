@@ -10,6 +10,8 @@
         <input name="_method" type="hidden" value="PATCH">
         @csrf
 
+        <input type="hidden" name="personal_id" value="{{$personal_id}}"/>
+
         <div class="form-group">
         <label for="">School Name</label>
         <input class="form-control" id="school_name" name="school_name" type="text" value="{{$education->school_name}}"/>
@@ -58,6 +60,8 @@
 
         <button class="btn btn-lg btn-dark text-center" type="submit">Update Education</button>
 
+        <a class="btn btn-md btn-success" href="/education"><i class="fas fa-user-graduate"></i> Back to Education</a>
+
     </form>
 
     @if($degrees->count() > 0)
@@ -96,6 +100,8 @@
                     <h6 class="card-subtitle mb-2 text-muted">Completed: {{$cert->completed_month_year_format}}</h6>
                     <p class="card-text">{{$cert->honors_info}}</p>
                     <a href="/education/degree/edit-degree-certificate/{{$cert->id}}" class="card-link">Edit Certificate</a>
+
+
                 </div>
             </div>
             </div>
@@ -161,6 +167,8 @@
         </div>
 
         <button class="btn btn-lg btn-primary text-center" type="submit">Create Degree or Certificate</button>
+
+        <a class="btn btn-md btn-success" href="/education"><i class="fas fa-user-graduate"></i> Back to Education</a>
 
     </form>
 

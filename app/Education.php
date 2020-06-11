@@ -27,4 +27,9 @@ class Education extends Model
         return $this->degrees()->where('degree_or_certificate','=', 'certificate');
     }
 
+
+    //establish that education belongs to one person
+    public function personal() {
+        return $this->belongsTo(Personal::class);
+    }
 }

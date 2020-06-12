@@ -9,6 +9,7 @@
     <form class="mb-3" method="POST" action="{{ route('/work/skill/skill-update', [$skill->id])}}" enctype="multipart/form-data">
         <input name="_method" type="hidden" value="PATCH">
         @csrf
+        <input type="hidden" value="{{$personal_id}}" name="personal_id"/>
 
         <div class="form-group">
             <label for="skill">Skill</label>

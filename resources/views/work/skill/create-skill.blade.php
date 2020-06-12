@@ -6,6 +6,8 @@
     <form class="mb-3" method="POST" action="{{ route('/work/skill/create-skill') }}" enctype="multipart/form-data">
         @csrf
 
+        <input type="hidden" value="{{$personal_id}}" name="personal_id"/>
+
         <div class="form-group">
             <label for="skill">Skill</label>
             <input class="form-control" id="skill" name="skill" type="text"/>

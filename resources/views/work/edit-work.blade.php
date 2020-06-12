@@ -9,6 +9,7 @@
     <form class="mb-3" method="POST" action="{{ route('/work/work-update', [$work->id])}}" enctype="multipart/form-data">
         <input name="_method" type="hidden" value="PATCH">
         @csrf
+        <input type="hidden" name="personal_id" value="{{$personal_id}}"/>
 
         <div class="form-row">
             <div class="col">
@@ -59,5 +60,5 @@
 
 
 @section('scripts')
-{{--    <script  src="/js/image_upload.js"></script>--}}
+
 @endsection

@@ -16,4 +16,16 @@ class Personal extends Model
     {
         return $this->hasMany(Education::class)->with('degrees');
     }
+
+    public function work()
+    {
+        return $this->hasMany(Work::class);
+    }
+
+    public function skills()
+    {
+        return $this->hasMany(Skill::class);
+    }
+
+
 }

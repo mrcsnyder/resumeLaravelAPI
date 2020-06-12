@@ -15,6 +15,7 @@ class CreateWorkTable extends Migration
     {
         Schema::create('work', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedInteger('personal_id');
             $table->string('role');
             $table->string('company_name')->nullable();
             $table->longText('description');

@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Work extends Model
 {
-    //
 
     protected $table = 'work';
 
     protected $fillable = [
+        'personal_id',
         'role',
         'company_name',
         'description',
@@ -22,5 +22,9 @@ class Work extends Model
     ];
 
 
+    //establish that work history belongs to one person
+    public function personal() {
+        return $this->belongsTo(Personal::class);
+    }
 
 }

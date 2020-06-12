@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Personal;
 use App\Work;
 use App\Skill;
 
@@ -15,9 +16,22 @@ class WorkController extends Controller
     //
     public function index(){
 
-        $work = Work::all();
 
-        $skills = Skill::all();
+        //get currently signed in user
+        $user = auth()->user();
+
+        //store users id
+        $user_id = $user->id;
+
+        $personal = Personal::where('user_id','=',$user_id)->first();
+        $personal_id = $personal->id;
+
+
+        $work = Work::where('personal_id','=',$personal_id)->get();
+
+        //$skills = Skill::all();
+        $skills = Skill::where('personal_id', '=', $personal_id)->get();
+
 
         $coding = $skills->where('category','=','coding');
 
@@ -42,7 +56,16 @@ class WorkController extends Controller
 
     public function create(){
 
-        return view('work.create-work');
+        //get currently signed in user
+        $user = auth()->user();
+
+        //store users id
+        $user_id = $user->id;
+
+        $personal = Personal::where('user_id','=',$user_id)->first();
+        $personal_id = $personal->id;
+
+        return view('work.create-work', compact('personal_id'));
     }
 
 
@@ -50,6 +73,7 @@ class WorkController extends Controller
 
         $work = new Work();
 
+        $work->personal_id = $request->input('personal_id');
         $work->role = $request->input('role');
         $work->company_name = $request->input('company_name');
         $work->description = $request->input('description');
@@ -99,9 +123,18 @@ class WorkController extends Controller
     //edit view action
     public function edit($id){
 
+        //get currently signed in user
+        $user = auth()->user();
+
+        //store users id
+        $user_id = $user->id;
+
+        $personal = Personal::where('user_id','=',$user_id)->first();
+        $personal_id = $personal->id;
+
         $work = Work::findOrFail($id);
 
-        return view('work.edit-work', compact('work'));
+        return view('work.edit-work', compact('work', 'personal_id'));
     }
 
     //update work post/patch action
@@ -156,7 +189,16 @@ class WorkController extends Controller
     //create skill view action
     public function createSkill(){
 
-        return view('work.skill.create-skill');
+        //get currently signed in user
+        $user = auth()->user();
+
+        //store users id
+        $user_id = $user->id;
+
+        $personal = Personal::where('user_id','=',$user_id)->first();
+        $personal_id = $personal->id;
+
+        return view('work.skill.create-skill', compact('personal_id'));
     }
 
 
@@ -165,7 +207,9 @@ class WorkController extends Controller
     public function storeSkill(Request $request){
 
         $skill = new Skill();
+        $skill->personal_id = $request->input('personal_id');
         $skill->skill = $request->input('skill');
+
         $skill->category = $request->input('category');
         $skill->rating = $request->input('rating');
         $skill->save();
@@ -181,9 +225,20 @@ class WorkController extends Controller
     //update skill view action
 
     public function editSkill($id){
+
+        //get currently signed in user
+        $user = auth()->user();
+
+        //store users id
+        $user_id = $user->id;
+
+        $personal = Personal::where('user_id','=',$user_id)->first();
+        $personal_id = $personal->id;
+
+
         $skill = Skill::findOrFail($id);
 
-    return view('work.skill.edit-skill', compact('skill'));
+    return view('work.skill.edit-skill', compact('skill', 'personal_id'));
 
     }
 

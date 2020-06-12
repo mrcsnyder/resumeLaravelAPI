@@ -5,6 +5,7 @@
     <h1>Create Work</h1>
     <form method="POST" action="{{ route('/work/create-work') }}" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" value="{{$personal_id}}" name="personal_id"/>
         <div class="form-row">
             <div class="col">
 

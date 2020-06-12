@@ -9,7 +9,7 @@ class Education extends Model
     //
     protected $table = 'education';
 
-    protected $fillable = ['school_name', 'details', 'start_month_year', 'end_month_year'];
+    protected $fillable = ['personal_id', 'school_name', 'details', 'start_month_year', 'end_month_year'];
 
     //since you can have more than one degree from one school
     public function degrees()

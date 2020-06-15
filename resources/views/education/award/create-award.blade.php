@@ -6,6 +6,8 @@
     <form method="POST" action="{{ route('/education/create-award') }}" enctype="multipart/form-data">
         @csrf
 
+        <input type="hidden" value="{{$personal_id}}" name="personal_id" />
+
         <div class="form-row">
 
             <div class="col">

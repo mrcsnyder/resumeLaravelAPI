@@ -7,10 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
 
-
     protected $table = 'projects';
 
-    protected $fillable = ['title', 'intro', 'full_detail', 'project_url', 'project_repo'];
+    protected $fillable = ['personal_id', 'title', 'full_detail', 'project_url', 'project_repo'];
 
     public function images()
     {
@@ -27,6 +26,10 @@ class Project extends Model
         return $this->images()->where('main_img','=', 0);
     }
 
+    //establish that projects belongs to one person
+    public function personal() {
+        return $this->belongsTo(Personal::class);
+    }
 
 
 }

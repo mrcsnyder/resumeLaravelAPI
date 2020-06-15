@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Personal;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\MakeProjectRequest;
@@ -23,29 +24,57 @@ class ProjectsController extends Controller
 
     public function index(){
 
-        $projects = Project::all();
+        //get currently signed in user
+        $user = auth()->user();
+
+        //store users id
+        $user_id = $user->id;
+
+        $personal = Personal::where('user_id','=',$user_id)->first();
+        $personal_id = $personal->id;
+
+        $projects = Project::where('personal_id','=',$personal_id)->get();
+
 
         return view('projects.projects-index', compact('projects'));
     }
 
     public function create() {
 
-        return view('projects.create-project');
+        //get currently signed in user
+        $user = auth()->user();
+
+        //store users id
+        $user_id = $user->id;
+
+        $personal = Personal::where('user_id','=',$user_id)->first();
+        $personal_id = $personal->id;
+
+        return view('projects.create-project', compact('personal_id'));
 
     }
 
     public function edit($id){
+        //get currently signed in user
+        $user = auth()->user();
+
+        //store users id
+        $user_id = $user->id;
+
+        $personal = Personal::where('user_id','=',$user_id)->first();
+        $personal_id = $personal->id;
+
 
         $project = Project::findOrFail($id);
 
-        return view('projects.edit-project', compact('project'));
+        return view('projects.edit-project', compact('project', 'personal_id'));
     }
 
     public function store(MakeProjectRequest $request) {
 
         $project = new Project();
+        $project->personal_id = $request->input('personal_id');
         $project->title = $request->input('title');
-        $project->intro = $request->input('intro');
         $project->full_detail = $request->input('full_detail');
         $project->project_url = $request->input('project_url');
         $project->project_repo = $request->input('project_repo');

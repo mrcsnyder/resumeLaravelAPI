@@ -10,8 +10,9 @@
 
 <form method="POST" action="{{ route('/projects/project-update', [$project->id])}}">
     <input name="_method" type="hidden" value="PATCH">
-    @csrf
 
+    @csrf
+    <input type="hidden" value="{{$personal_id}}" name="personal_id"/>
     <label for="">Project Name (Name &amp; One Line Description)</label>
     <input class="form-control" id="title" name="title" type="text" value="{{$project->title}}"/>
 

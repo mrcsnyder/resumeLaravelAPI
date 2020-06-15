@@ -15,6 +15,7 @@ class CreateAwardsTable extends Migration
     {
         Schema::create('awards', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedInteger('personal_id');
             $table->string('award_name')->nullable();
             $table->string('award_type')->nullable();
             $table->string('awarded_by')->nullable();

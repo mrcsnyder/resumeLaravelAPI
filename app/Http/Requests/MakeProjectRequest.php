@@ -24,6 +24,7 @@ class MakeProjectRequest extends FormRequest
     public function rules()
     {
         return [
+            'personal_id' => 'required',
             'title' => 'required',
             'full_detail' => 'required',
         ];

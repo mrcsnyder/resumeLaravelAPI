@@ -32,7 +32,7 @@ class EducationController extends Controller
 
         $education = Education::where('personal_id','=',$personal_id)->get();
 
-        $awards = Award::all();
+        $awards = Award::where('personal_id','=',$personal_id)->get();
 
         return view('education.education-index', compact('education', 'awards'));
     }
@@ -272,7 +272,16 @@ class EducationController extends Controller
     //create award view action
     public function createAward(){
 
-        return view('education.award.create-award');
+        //get currently signed in user
+        $user = auth()->user();
+
+        //store users id
+        $user_id = $user->id;
+
+        $personal = Personal::where('user_id','=',$user_id)->first();
+        $personal_id = $personal->id;
+
+        return view('education.award.create-award', compact('personal_id'));
     }
 
 
@@ -281,6 +290,7 @@ class EducationController extends Controller
 
         $award = new Award();
 
+        $award->personal_id = $request->input('personal_id');
         $award->award_name = $request->input('award_name');
         $award->award_type = $request->input('award_type');
         $award->awarded_by = $request->input('awarded_by');
@@ -296,13 +306,21 @@ class EducationController extends Controller
 
         $award= Award::findOrFail($id);
 
-        return view('education.award.edit-award', compact('award'));
+        //get currently signed in user
+        $user = auth()->user();
+
+        //store users id
+        $user_id = $user->id;
+
+        $personal = Personal::where('user_id','=',$user_id)->first();
+        $personal_id = $personal->id;
+
+        return view('education.award.edit-award', compact('award', 'personal_id'));
 
     }
 
     //update & store Award action
     public function updateAward(Request $request, $id){
-
 
         //add some error handling
         $award = Award::findOrFail($id);

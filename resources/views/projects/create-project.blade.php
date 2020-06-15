@@ -6,14 +6,11 @@
 <form method="POST" action="{{ route('/projects/create-project') }}">
     @csrf
 
+    <input type="hidden" value="{{$personal_id}}" name="personal_id"/>
+
     <label for="">Project Name</label>
     <input class="form-control" id="title" name="title" type="text"/>
 
-
-{{--    <div class="form-group">--}}
-{{--        <label for="intro">Intro</label>--}}
-{{--        <textarea class="form-control" id="intro" name="intro"></textarea>--}}
-{{--    </div>--}}
 
     <div class="form-group">
         <label for="full_detail">Detailed Explanation</label>

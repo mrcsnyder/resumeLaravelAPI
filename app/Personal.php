@@ -22,10 +22,19 @@ class Personal extends Model
         return $this->hasMany(Work::class);
     }
 
+    public function awards()
+    {
+        return $this->hasMany(Award::class);
+    }
+
     public function skills()
     {
         return $this->hasMany(Skill::class);
     }
 
-
+    public function projects()
+    {
+        return $this->hasMany(Project::class)->with('images');
+    }
+    
 }

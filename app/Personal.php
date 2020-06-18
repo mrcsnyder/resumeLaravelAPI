@@ -27,14 +27,43 @@ class Personal extends Model
         return $this->hasMany(Award::class);
     }
 
+    //skills combined
     public function skills()
     {
         return $this->hasMany(Skill::class);
     }
 
+    public function coding_skills(){
+
+        return $this->skills()->where('category','=', 'coding');
+    }
+
+    public function methods_devops_skills(){
+
+        return $this->skills()->where('category','=', 'methods_devops');
+    }
+
+    public function software_skills(){
+
+        return $this->skills()->where('category','=', 'software');
+    }
+
+    public function operating_systems_skills(){
+
+        return $this->skills()->where('category','=', 'operating_systems');
+    }
+
+    public function business_skills(){
+
+        return $this->skills()->where('category','=', 'operating_systems');
+    }
+
+
     public function projects()
     {
         return $this->hasMany(Project::class)->with('images');
     }
-    
+
+
+
 }

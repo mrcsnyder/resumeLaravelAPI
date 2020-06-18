@@ -22,12 +22,23 @@ class Personal extends Model
         return $this->hasMany(Work::class);
     }
 
+    //awards parent and types
     public function awards()
     {
         return $this->hasMany(Award::class);
     }
 
-    //skills combined
+    public function scholarships()
+    {
+        return $this->awards()->where('award_type','=','scholarship');
+    }
+
+    public function honors()
+    {
+        return $this->awards()->where('award_type','=','honor_roll');
+    }
+
+    //skills parent and categories
     public function skills()
     {
         return $this->hasMany(Skill::class);

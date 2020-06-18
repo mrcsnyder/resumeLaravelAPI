@@ -50,7 +50,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('personal-with-all/{id}',function($id){
 
     //get all project ids and the images
-    return Personal::where('id','=',$id)->with('education', 'work', 'awards', 'coding_skills', 'methods_devops_skills', 'software_skills', 'operating_systems_skills', 'business_skills', 'projects')->get();
+    return Personal::where('id','=',$id)->with('education', 'work', 'scholarships', 'honors', 'coding_skills', 'methods_devops_skills', 'software_skills', 'operating_systems_skills', 'business_skills', 'projects')->get();
 
 });
 

@@ -92,7 +92,7 @@ class PersonalController extends Controller
             //set personal profile_image to filename
             $personal->resume = $pdf_filename;
         }
-        
+
         $personal->professional_intro = $request->input('professional_intro');
         $personal->hobbies_interests = $request->input('hobbies_interests');
 
@@ -174,6 +174,15 @@ public function update(Request $request, $id){
     //redirect back
     return Redirect::back()->with(Session::flash('message', 'Personal Details Successfully Updated!'));
 
+}
+
+
+//get endpoint action
+
+public function getPersonal($id){
+
+    //get all project ids and the images
+    return Personal::where('id','=',$id)->with('education', 'work', 'scholarships', 'honors', 'coding_skills', 'methods_devops_skills', 'software_skills', 'operating_systems_skills', 'business_skills', 'projects')->get();
 }
 
 

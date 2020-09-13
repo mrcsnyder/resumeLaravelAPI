@@ -1,9 +1,10 @@
 @extends('layouts.default')
 
+
 @section('content')
 
     <h1>Update Personal Details</h1>
-    <img src="/images/{{$personal->profile_image}}" id="portrait-img" alt="{{$personal->name}}" class="img-fluid portrait-about d-block rounded-circle">
+    <img src="/images/personal/{{$personal->profile_image}}" id="portrait-img" alt="{{$personal->name}}" class="img-fluid portrait-about d-block rounded-circle">
     <form class="mb-3" method="POST" action="{{ route('/personal/personal-update', [$personal->id])}}" enctype="multipart/form-data">
         <input name="_method" type="hidden" value="PATCH">
         @csrf
@@ -49,7 +50,8 @@
         <div class="form-group">
 
             <label for="profile_image">Profile Image</label>
-            <input type="file" name="profile_image" id="profile_image" onchange="readURL(this);"/>
+            <input type="file" name="image_file" id="image_file" onchange="readURL(this);"/>
+            <input type="text" type="hidden" class="img_name" name="profile_image">
         </div>
 
         <div id="image_preview">
@@ -58,7 +60,8 @@
 
         <div class="form-group">
             <label for="resume">Resume (PDF)</label>
-            <input type="file" name="resume" id="resume"/>
+            <input type="file" name="pdf_file" id="pdf_file"/>
+            <input type="text" type="hidden" class="file_name" name="resume">
         </div>
 
         <div class="form-group">
@@ -73,7 +76,7 @@
 
         <button class="btn btn-lg btn-dark text-center" type="submit">Update Personal Details</button>
 
-        <a class="btn btn-md btn-success" href="/personal"><i class="fas fa-user"></i> Back to Personal</a>
+        <a class="btn btn-lg btn-success" href="/personal"><i class="fas fa-user"></i> Back to Personal</a>
 
     </form>
 

@@ -2,9 +2,24 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 
 use App\Personal;
+
+//need to revisit this
+use App\Repositories\Personal\PersonalRepositoryInterface;
+
+// this is the key?
+use App\Repositories\Personal\PersonalRepository;
+
+use App\Repositories\Image\ImageRepository;
+use App\Repositories\PDF\PDFRepository;
+
+
+use App\Http\Requests\MakePersonalRequest;
+use App\Http\Requests\EditPersonalRequest;
+
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -13,22 +28,32 @@ use Image;
 
 class PersonalController extends Controller
 {
+
+
+    // space that we can use the repository from
+    protected $model;
+    protected $image;
+    protected $pdf;
+
+    public function __construct(Personal $personal, Image $img)
+    {
+        // set the model
+        $this->model = new PersonalRepository($personal);
+        $this->image = new ImageRepository($img);
+        $this->pdf = new PDFRepository();
+
+    }
+
+
     //personal index view action
-    public function index(){
+    public function index(PersonalRepositoryInterface $personalRepo){
 
-        //get currently signed in user
-        $user = auth()->user();
+       //get currently signed in user
+       $user_id = $this->getCurrentUser();
 
-        //store users id
-        $user_id = $user->id;
-
-        //possibly a neater way to do this:
-        //right now I just use find instead of findOrFail because I check if array is empty
-        $personal = Personal::where('user_id','=',$user_id)->first();
-
-
-//        dd($personal);
-
+        //possibly a neater way to do this, but it is working good
+        //see PersonalRepository method
+        $personal = $personalRepo->find($user_id);
 
         return view('personal.personal-index', compact('personal'));
     }
@@ -38,17 +63,15 @@ class PersonalController extends Controller
     public function create(){
 
         //get currently signed in user
-        $user = auth()->user();
-
-        //store users id
-        $user_id = $user->id;
+        $user_id = $this->getCurrentUser();
 
         return view('personal.create-personal', compact('user_id'));
     }
 
 
     // store personal post action
-    public function store(Request $request){
+    //create a custom request object for Personal
+    public function store(MakePersonalRequest $request){
 
         $personal = new Personal();
 
@@ -105,71 +128,42 @@ class PersonalController extends Controller
 
 
     // edit personal view action
-    public function edit($id){
+    public function edit(PersonalRepositoryInterface $personalRepo){
+
+        //get currently signed in user
+        $user_id = $this->getCurrentUser();
 
         //get user based on passed currently logged in user's id
-        $personal = Personal::findOrFail($id);
-
-        $user = auth()->user();
-
-        $user_id = $user->id;
+        $personal = $personalRepo->find($user_id);
 
         return view('personal.edit-personal', compact('personal', 'user_id'));
 
 }
 
 
-//update patch action
 
-public function update(Request $request, $id){
+public function update(EditPersonalRequest $request, $id){
 
-    $personal = Personal::findOrFail($id);
+    //handy array_filter method removes any unset values from request associative array
+    $filterRequest = array_filter($request->all());
 
-    $personal->user_id = $request->input('user_id');
-    $personal->name = $request->input('name');
-    $personal->current_role = $request->input('current_role');
-    $personal->git_source = $request->input('git_source');
-    $personal->linkedin = $request->input('linkedin');
-    $personal->professional_intro = $request->input('professional_intro');
-    $personal->hobbies_interests = $request->input('hobbies_interests');
+    $this->model->update($filterRequest, $id);
 
-    $filename ="";
-    if($request->hasFile('profile_image')){
 
-        //get the file from the profile_image request...
-        $profile_image = $request->file('profile_image');
-
-        //set the file name
-        $filename = uniqid(). $profile_image->getClientOriginalName();
-
-        //move the file to correct location
-        $profile_image->move('images/', $filename);
-
-        //here is where I need to add the thumbnail also....
-        $thumb_string="thmb-".$filename;
-
-        //image intervention creating different sized images
-        Image::make( public_path('images/'.$filename))->resize(240, 240)->save('images/'.$thumb_string);
-        $personal->profile_image = $filename;
+    if($request->hasFile('image_file')){
+        //params for storeImage: $request, $fileKey, $fileName, $path
+        $this->image->storeImage($request, 'image_file', $request['profile_image'], 'images/personal');
 
     }
 
-    $pdf_filename ="";
-//check if resume has been patched, and if so update it
-    if($request->hasFile('resume')){
 
-        //get the file from the resume request...
-        $resume_file = $request->file('resume');
+    if($request->hasFile('pdf_file')) {
 
-        $pdf_filename = $resume_file->getClientOriginalName();
+        //params for storePDF: $request, $fileKey, $fileName
+        $this->pdf->storePDF($request, 'pdf_file', 'pdf-resume');
 
-        //move the file to correct location
-        $resume_file->move('pdf-resume/', $pdf_filename);
-        $personal->resume = $pdf_filename;
     }
 
-
-    $personal->save();
 
     //redirect back
     return Redirect::back()->with(Session::flash('message', 'Personal Details Successfully Updated!'));
@@ -185,5 +179,14 @@ public function getPersonal($id){
     return Personal::where('id','=',$id)->with('education', 'work', 'scholarships', 'honors', 'coding_skills', 'methods_devops_skills', 'software_skills', 'operating_systems_skills', 'business_skills', 'projects')->get();
 }
 
+
+// function to return user_id
+private function getCurrentUser(){
+
+    //get currently signed in user
+    $user = auth()->user();
+
+    return $user->id;
+}
 
 }

@@ -115,11 +115,10 @@ Route::get('/personal/create-personal', 'PersonalController@create')->name('/per
 Route::post('/personal/create-personal', 'PersonalController@store')->name('/personal/create-personal')->middleware('power');
 
 //edit personal get/view route
-Route::get('/personal/edit-personal/{id}', 'PersonalController@edit')->name('/personal/edit-personal')->middleware('power');
+Route::get('/personal/edit-personal', 'PersonalController@edit')->name('/personal/edit-personal')->middleware('power');
 
 // update personal
 Route::patch('/personal/edit-personal/{id}', 'PersonalController@update')->name('/personal/personal-update')->middleware('power');
-
 
 
 //projects index page and root/home route

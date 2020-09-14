@@ -1,5 +1,5 @@
 @extends('layouts.default')
-
+@section('title', 'Endpoints Portal')
 @section('content')
 <div class="container mb-3">
     <div class="row">

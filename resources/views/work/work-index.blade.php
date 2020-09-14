@@ -1,8 +1,7 @@
 @extends('layouts.default')
-
-@section('title', 'Manage Education')
+@section('title', 'Manage Work History Endpoint')
 @section('content')
-    <h1><i class="fas fa-briefcase mb-3"></i> Manage Work History Endpoints</h1>
+    <h1><i class="fas fa-briefcase mb-3"></i> Manage Work History Endpoint</h1>
 
     <hr/>
     <h2><i class="fas fa-user-tie"></i> Work History <a class="btn btn-sm btn-dark" href="/work/create-work">Create Work</a></h2>

@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Edit Project')
+@section('title', 'Edit Project | '.$project->title)
 
 @section('content')
 

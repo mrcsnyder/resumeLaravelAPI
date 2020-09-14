@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Edit Education')
+@section('title', 'Edit Education: '.$education->school_name)
 
 @section('content')
 
@@ -168,7 +168,7 @@
 
         <button class="btn btn-lg btn-primary text-center" type="submit">Create Degree or Certificate</button>
 
-        <a class="btn btn-md btn-success" href="/education"><i class="fas fa-user-graduate"></i> Back to Education</a>
+        <a class="btn btn-lg btn-success" href="/education"><i class="fas fa-user-graduate"></i> Back to Education</a>
 
     </form>
 

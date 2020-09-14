@@ -9,7 +9,7 @@ class Personal extends Model
 
     protected $table = 'personal';
 
-    protected $fillable = ['name', 'current_role', 'profile_image', 'resume', 'linkedin', 'git_source','professional_intro', 'hobbies_interests'];
+    protected $fillable = ['user_id', 'name', 'current_role', 'profile_image', 'resume', 'linkedin', 'git_source','professional_intro', 'hobbies_interests'];
 
     public function scopePersonal($query,$user_id){
         return $query->where('user_id', '=', $user_id);

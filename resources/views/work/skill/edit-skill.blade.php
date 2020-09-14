@@ -1,10 +1,10 @@
 @extends('layouts.default')
 
-@section('title', 'Edit Skill')
+@section('title', 'Editing \''.$skill->skill.'\' Skill')
 
 @section('content')
 
-    <h1>Editing <span class="text-muted">'{{$skill->skill}}'</span></h1>
+    <h1>Editing <span class="text-muted">'{{$skill->skill}}'</span> Skill</h1>
 
     <form class="mb-3" method="POST" action="{{ route('/work/skill/skill-update', [$skill->id])}}" enctype="multipart/form-data">
         <input name="_method" type="hidden" value="PATCH">
@@ -32,7 +32,6 @@
                 </div>
             </div>
 
-
             <div class="col">
 
                 <div class="form-group">
@@ -43,14 +42,8 @@
         </div>
 
         <button class="btn btn-lg btn-dark text-center" type="submit">Update Skill</button>
-
+        <a class="btn btn-lg btn-success" href="/work"><i class="fas fa-briefcase"></i> Back to Work</a>
     </form>
 
-    <a class="btn btn-md btn-success" href="/work"><i class="fas fa-briefcase"></i> Back to Work</a>
-
 @endsection
 
-
-@section('scripts')
-    {{--    <script  src="/js/image_upload.js"></script>--}}
-@endsection

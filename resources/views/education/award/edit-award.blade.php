@@ -1,10 +1,10 @@
 @extends('layouts.default')
-
+@section('title', 'Edit: \'' .$award->award_name.'\' Award')
 @section('title', 'Edit '.$award->award_type)
 
 @section('content')
 
-    <h1>Editing <span class="text-muted">'{{$award->award_name}}'</span></h1>
+    <h1>Editing <span class="text-muted">'{{$award->award_name}}'</span> Award</h1>
 
     <form class="mb-3" method="POST" action="{{ route('/education/award/award-update', [$award->id])}}">
         <input name="_method" type="hidden" value="PATCH">
@@ -53,8 +53,8 @@
         </div>
 
         <button class="btn btn-lg btn-dark text-center" type="submit">Update Award</button>
-
+        <a class="btn btn-lg btn-success" href="/education"><i class="fas fa-graduation-cap"></i> Back to Education</a>
     </form>
 
-    <a class="btn btn-md btn-success" href="/education"><i class="fas fa-graduation-cap"></i> Back to Education</a>
+
 @endsection

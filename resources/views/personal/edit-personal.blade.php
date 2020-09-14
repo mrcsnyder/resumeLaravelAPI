@@ -1,5 +1,5 @@
 @extends('layouts.default')
-
+@section('title', 'Update Personal Details | '.$personal->name)
 
 @section('content')
 

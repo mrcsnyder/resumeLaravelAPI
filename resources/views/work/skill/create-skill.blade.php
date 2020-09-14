@@ -1,5 +1,5 @@
 @extends('layouts.default')
-
+@section('title', 'Create Skill')
 @section('content')
 
     <h1>Create Skill</h1>
@@ -45,5 +45,5 @@
 @endsection
 
 @section('scripts')
-    {{--    <script  src="/js/image_upload.js"></script>--}}
+
 @endsection

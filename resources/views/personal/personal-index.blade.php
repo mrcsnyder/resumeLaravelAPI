@@ -12,7 +12,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <img src="/images/{{$personal->profile_image}}" id="portrait-img" alt="{{$personal->name}}" class="img-fluid portrait-about mx-auto d-block rounded-circle">
+                        <img src="/images/personal/{{$personal->profile_image}}" id="portrait-img" alt="{{$personal->name}}" class="img-fluid portrait-about mx-auto d-block rounded-circle">
                         <h5 class="card-title">{{$personal->name}}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{$personal->current_role}}</h6>
                         <a class="btn btn-sm btn-dark" href="/personal/edit-personal">Edit</a>

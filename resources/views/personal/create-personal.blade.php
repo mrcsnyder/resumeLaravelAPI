@@ -1,5 +1,5 @@
 @extends('layouts.default')
-
+@section('title', 'Create Personal Details')
 @section('content')
 
     <h1>Add Personal Details</h1>
@@ -43,11 +43,11 @@
                 </div>
             </div>
         </div>
-
         <div class="form-group">
 
             <label for="profile_image">Profile Image</label>
-                <input type="file" name="profile_image" id="profile_image" onchange="readURL(this);"/>
+            <input type="file" name="image_file" id="image_file" onchange="readURL(this);"/>
+            <input type="text" type="hidden" class="img_name" name="profile_image">
         </div>
 
         <div id="image_preview">
@@ -56,7 +56,8 @@
 
         <div class="form-group">
             <label for="resume">Resume (PDF)</label>
-            <input type="file" name="resume" id="resume"/>
+            <input type="file" name="pdf_file" id="pdf_file"/>
+            <input type="text" type="hidden" class="file_name" name="resume">
         </div>
 
         <div class="form-group">

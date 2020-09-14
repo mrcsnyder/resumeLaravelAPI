@@ -1,5 +1,5 @@
 @extends('layouts.default')
-
+@section('title', 'Create Project')
 @section('content')
 
 <h1>Create Project</h1>

@@ -46,9 +46,9 @@ class PersonalRepository implements PersonalRepositoryInterface
     }
 
     // create a new record in the database
-    public function store(array $data)
+    public function create(array $data)
     {
-        return $this->model->store($data);
+        return $this->model->create($data);
     }
 
 }

@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Edit Work')
+@section('title', 'Edit Work History: '.$work->company_name)
 
 @section('content')
 

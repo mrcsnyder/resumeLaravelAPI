@@ -1,8 +1,8 @@
 @extends('layouts.default')
-
+@section('title', 'Add Education')
 @section('content')
 
-    <h1>Create Education</h1>
+    <h1>Add Education</h1>
     <form method="POST" action="{{ route('/education/create-education') }}" enctype="multipart/form-data">
         @csrf
 
@@ -11,7 +11,8 @@
         <label for="">School Name</label>
         <input class="form-control" id="school_name" name="school_name" type="text"/>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
+            <label for="">School Logo</label>
             <div class="">
                 <input type="file" name="logo" id="logo" onchange="readURL(this);"/>
             </div>
@@ -45,7 +46,8 @@
         </div>
 
 
-        <button class="btn btn-lg btn-primary text-center" type="submit">Create Education</button>
+        <button class="btn btn-lg btn-dark text-center" type="submit">Save Education</button>
+        <a class="btn btn-lg btn-success" href="/education"><i class="fas fa-user-graduate"></i> Back to Education</a>
 
     </form>
 

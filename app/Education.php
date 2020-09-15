@@ -11,6 +11,10 @@ class Education extends Model
 
     protected $fillable = ['personal_id', 'school_name', 'details', 'start_month_year', 'end_month_year'];
 
+    public function scopeEducation($query,$personal_id){
+        return $query->where('personal_id', '=', $personal_id)->get();
+    }
+
     //since you can have more than one degree from one school
     public function degrees()
     {

@@ -41,7 +41,6 @@ class HomeController extends Controller
                 $message->from('resume@thisdudecodes.com', 'resume.thisdudecodes.com');
                 $message->to('snyder.chris.m@gmail.com', 'resume.thisdudecode')->subject('Resume Contact!');
 
-
             });
 
         return response()->json(['success'=>true]);

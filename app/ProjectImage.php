@@ -6,12 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProjectImage extends Model
 {
-    //
 
     protected $table = 'images';
 
     protected $fillable = ['project_id', 'file_name', 'description', 'main_img'];
-
 
     //establish that an image belongs to one project
     public function project() {

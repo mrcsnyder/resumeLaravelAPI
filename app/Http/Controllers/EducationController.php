@@ -11,28 +11,57 @@ use App\Award;
 use App\Personal;
 
 use Illuminate\Http\Request;
+
+use App\Http\Requests\MakeAwardRequest;
+
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
+use App\Repositories\Personal\PersonalRepositoryInterface;
+
+use App\Repositories\Award\AwardRepositoryInterface;
+use App\Repositories\Award\AwardRepository;
+
+use App\Repositories\Education\EducationRepositoryInterface;
+use App\Repositories\Education\EducationRepository;
+
 class EducationController extends Controller
 {
+
+    protected $award;
+    protected $currentUser;
+
+    public function __construct(Award $award)
+    {
+        // set the model
+        $this->award = new AwardRepository($award);
+
+        //set currently logged in user
+        $this->middleware(function ($request, $next){
+            $this->currentUser = auth()->user()->id;
+            return $next($request);
+        });
+
+
+    }
+
+
     //education index action
-    public function index(){
+    public function index(PersonalRepositoryInterface $personalRepo,
+                          EducationRepositoryInterface $eduRepo,
+                          AwardRepositoryInterface $awardRepo)
+    {
 
-        //get currently signed in user
-        $user = auth()->user();
+        //possibly a neater way to do this, but it is working good
+        //see PersonalRepository method
+        $personal = $personalRepo->find($this->currentUser);
 
-        //store users id
-        $user_id = $user->id;
-
-        $personal = Personal::where('user_id','=',$user_id)->first();
         $personal_id = $personal->id;
 
+        $education = $eduRepo->find($personal_id);
 
-        $education = Education::where('personal_id','=',$personal_id)->get();
-
-        $awards = Award::where('personal_id','=',$personal_id)->get();
+        $awards = $awardRepo->find($personal_id);
 
         return view('education.education-index', compact('education', 'awards'));
     }
@@ -150,7 +179,7 @@ class EducationController extends Controller
         $edu->update($request->all());
 
 
-        $filename ='';
+        $filename = '';
 
         if($request->hasFile('logo')){
 
@@ -270,15 +299,11 @@ class EducationController extends Controller
     }
 
     //create award view action
-    public function createAward(){
+    public function createAward(PersonalRepositoryInterface $personalRepo){
 
-        //get currently signed in user
-        $user = auth()->user();
+        //see PersonalRepository method
+        $personal = $personalRepo->find($this->currentUser);
 
-        //store users id
-        $user_id = $user->id;
-
-        $personal = Personal::where('user_id','=',$user_id)->first();
         $personal_id = $personal->id;
 
         return view('education.award.create-award', compact('personal_id'));
@@ -286,33 +311,23 @@ class EducationController extends Controller
 
 
     //store created award action
-    public function storeAward(Request $request){
+    public function storeAward(MakeAwardRequest $request){
 
-        $award = new Award();
-
-        $award->personal_id = $request->input('personal_id');
-        $award->award_name = $request->input('award_name');
-        $award->award_type = $request->input('award_type');
-        $award->awarded_by = $request->input('awarded_by');
-        $award->date_range = $request->input('date_range');
-        $award->save();
+        $this->award->create($request->all());
 
         return redirect('/education')->with(Session::flash('message', 'Honor or Scholarship Successfully Added!'));
 
 
     }
 
-    public function editAward($id){
+    public function editAward($id, PersonalRepositoryInterface $personalRepo, AwardRepositoryInterface $awardRepo){
 
-        $award= Award::findOrFail($id);
+        $award = $awardRepo->get($id);
 
-        //get currently signed in user
-        $user = auth()->user();
+        //see PersonalRepository method
+        //TODO clean up the edit award form template(s) to include personal_id automatically, but provide it for create
+        $personal = $personalRepo->find($this->currentUser);
 
-        //store users id
-        $user_id = $user->id;
-
-        $personal = Personal::where('user_id','=',$user_id)->first();
         $personal_id = $personal->id;
 
         return view('education.award.edit-award', compact('award', 'personal_id'));
@@ -320,17 +335,9 @@ class EducationController extends Controller
     }
 
     //update & store Award action
-    public function updateAward(Request $request, $id){
+    public function updateAward(MakeAwardRequest $request, $id){
 
-        //add some error handling
-        $award = Award::findOrFail($id);
-
-        //update all of the project attributes
-        $award->update($request->all());
-
-
-        //save the formatted date
-        $award->save();
+        $this->award->update($request->all(), $id);
 
         //redirect back
         return Redirect::back()->with(Session::flash('message', 'Award Successfully Updated!'));

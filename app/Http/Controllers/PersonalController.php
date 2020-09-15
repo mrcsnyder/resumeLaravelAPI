@@ -25,6 +25,7 @@ class PersonalController extends Controller
     protected $model;
     protected $image;
     protected $pdf;
+    protected $currentUser;
 
     public function __construct(Personal $personal, Image $img)
     {
@@ -33,17 +34,20 @@ class PersonalController extends Controller
         $this->image = new ImageRepository($img);
         $this->pdf = new PDFRepository();
 
+        //set currently logged in user
+        $this->middleware(function ($request, $next){
+            $this->currentUser = auth()->user()->id;
+            return $next($request);
+        });
+
     }
 
     //personal index view action
     public function index(PersonalRepositoryInterface $personalRepo){
 
-       //get currently signed in user
-       $user_id = $this->getCurrentUser();
-
         //possibly a neater way to do this, but it is working good
         //see PersonalRepository method
-        $personal = $personalRepo->find($user_id);
+        $personal = $personalRepo->find($this->currentUser);
 
         return view('personal.personal-index', compact('personal'));
     }
@@ -52,7 +56,7 @@ class PersonalController extends Controller
     public function create(){
 
         //get currently signed in user
-        $user_id = $this->getCurrentUser();
+        $user_id = $this->currentUser;
 
         return view('personal.create-personal', compact('user_id'));
     }
@@ -77,7 +81,7 @@ class PersonalController extends Controller
 
         $this->model->create($filterRequest);
 
-        //redirect back with message for users!
+        //redirect back with message
         Session::flash('message', 'Personal Details Successfully Added!');
         return redirect('/personal');
     }
@@ -86,10 +90,11 @@ class PersonalController extends Controller
 public function edit(PersonalRepositoryInterface $personalRepo){
 
         //get currently signed in user
-        $user_id = $this->getCurrentUser();
+        $user_id = $this->currentUser;
+        //TODO clean up the forms by creating templates and get user_id in edit automatically
 
         //get user based on passed currently logged in user's id
-        $personal = $personalRepo->find($user_id);
+        $personal = $personalRepo->find($this->currentUser);
 
         return view('personal.edit-personal', compact('personal', 'user_id'));
 
@@ -125,15 +130,6 @@ public function getPersonal($id){
 
     //get all project ids and the images
     return Personal::where('id','=',$id)->with('education', 'work', 'scholarships', 'honors', 'coding_skills', 'methods_devops_skills', 'software_skills', 'operating_systems_skills', 'business_skills', 'projects')->get();
-}
-
-// function to return user_id
-private function getCurrentUser(){
-
-    //get currently signed in user
-    $user = auth()->user();
-
-    return $user->id;
 }
 
 }

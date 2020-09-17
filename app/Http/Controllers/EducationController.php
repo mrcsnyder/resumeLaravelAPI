@@ -23,19 +23,27 @@ use App\Repositories\Personal\PersonalRepositoryInterface;
 use App\Repositories\Award\AwardRepositoryInterface;
 use App\Repositories\Award\AwardRepository;
 
+use App\Repositories\Degree\DegreeRepositoryInterface;
+use App\Repositories\Degree\DegreeRepository;
+
 use App\Repositories\Education\EducationRepositoryInterface;
 use App\Repositories\Education\EducationRepository;
+
+
 
 class EducationController extends Controller
 {
 
     protected $award;
     protected $currentUser;
+    protected $degree;
 
-    public function __construct(Award $award)
+    public function __construct(Award $award, Degree $degree)
     {
         // set the model
         $this->award = new AwardRepository($award);
+        $this->degree = new DegreeRepository($degree);
+
 
         //set currently logged in user
         $this->middleware(function ($request, $next){
@@ -43,9 +51,7 @@ class EducationController extends Controller
             return $next($request);
         });
 
-
     }
-
 
     //education index action
     public function index(PersonalRepositoryInterface $personalRepo,
@@ -67,15 +73,11 @@ class EducationController extends Controller
     }
 
     //education create action
-    public function create() {
+    public function create(PersonalRepositoryInterface $personalRepo) {
 
-        //get currently signed in user
-        $user = auth()->user();
 
-        //store users id
-        $user_id = $user->id;
+        $personal = $personalRepo->find($this->currentUser);
 
-        $personal = Personal::where('user_id','=',$user_id)->first();
         $personal_id = $personal->id;
 
         return view('education.create-education', compact('personal_id'));
@@ -147,22 +149,22 @@ class EducationController extends Controller
     }
 
     //edit education view action
-    public function edit($id){
+    public function edit($id,
+                         PersonalRepositoryInterface $personalRepo,
+                         EducationRepositoryInterface $eduRepo)
+    {
 
-        //get currently signed in user
-        $user = auth()->user();
-
-        //store users id
-        $user_id = $user->id;
-
-        $personal = Personal::where('user_id','=',$user_id)->first();
+        $personal = $personalRepo->find($this->currentUser);
         $personal_id = $personal->id;
+        //TODO modify forms so that this is not necessary in the edit form for education
+        // (degree not necessary since it is related to education record)
 
         //get education collection
-        $education = Education::findOrFail($id);
-        //get degrees from education collection
-        $degrees = $education->degrees->where('degree_or_certificate','=','degree');
-        $certificates = $education->degrees->where('degree_or_certificate','=','certificate');
+        $education = $eduRepo->get($id);
+
+        //get degrees & certs from education collection
+        $degrees = $education->education_degrees;
+        $certificates = $education->education_certificates;
 
         return view('education.edit-education', compact('education', 'degrees', 'certificates', 'personal_id'));
     }
@@ -177,7 +179,6 @@ class EducationController extends Controller
 
         //update all of the project attributes
         $edu->update($request->all());
-
 
         $filename = '';
 
@@ -231,67 +232,39 @@ class EducationController extends Controller
         return Redirect::back()->with(Session::flash('message', 'Education Successfully Updated!'));
     }
 
-
-    //store certificate or diploma action that is utilized in the edit view for education
+    //store certificate or diploma action that is utilized in the edit view for education parent
     public function storeCertificateDiploma(Request $request){
 
-        $certDegree = new Degree();
-        $certDegree->education_id = $request->input('school_id');
-        $certDegree->degree_or_certificate = $request->input('degree_or_certificate');
-        $certDegree->major = $request->input('major');
-        $certDegree->honors_info = $request->input('honors_info');
-        $certDegree->gpa = $request->input('gpa');
+        $completed_month_year_format = ($this->returnMonthYear($request->input('completed_month_year_preformat')));
+        //nifty way to append key/values to request array
+        $request->request->add(['completed_month_year_format' => $completed_month_year_format]);
 
-        $certDegree->completed_month_year_preformat = $request->input('completed_month_year');
+        $this->degree->create($request->all());
 
-
-        //work around to tack on day at end of request
-        $pre_date_str = $request->input('completed_month_year').'-01';
-
-        $pre_date_month_year = date('M Y', strtotime($pre_date_str));
-
-        //format pre_date_month_year to store only month and year in format I prefer
-        $certDegree->completed_month_year_format = $pre_date_month_year;
-        $certDegree->save();
-
-        //redirect back with message for users!
         //redirect back
         return Redirect::back()->with(Session::flash('message', 'Certificate or Degree Successfully Added!'));
     }
 
 
     //edit degree or certificate action view
-    public function editDegreeCertificate($id){
+    public function editDegreeCertificate($id, DegreeRepositoryInterface $degreeRepo){
 
-        $degree = Degree::findOrFail($id);
-        $edu = $degree->education;
+        $degree = $degreeRepo->get($id);
 
-        return view('education.degree.edit-degree-certificate', compact('degree', 'edu'));
+        return view('education.degree.edit-degree-certificate', compact('degree'));
     }
 
-    //update degree or certificate action view
-    public function updateDegreeCertificate(Request $request, $id){
+    //update degree or certificate action post action
+    public function updateDegreeCertificate(Request $request, $id, DegreeRepositoryInterface $degreeRepo){
 
+        $completed_month_year_format = ($this->returnMonthYear($request->input('completed_month_year_preformat')));
+        //nifty way to append key/values to request array
+        $request->request->add(['completed_month_year_format' => $completed_month_year_format]);
 
-        //add some error handling
-        $degree_cert = Degree::findOrFail($id);
+        $degree_cert = $degreeRepo->get($id);
 
         //update all of the project attributes
         $degree_cert->update($request->all());
-
-
-        //save the formatted date into the format field of the db
-
-        //work around to tack on day at end of request
-        $pre_date_str = $request->input('completed_month_year').'-01';
-
-        $pre_date_month_year = date('M Y', strtotime($pre_date_str));
-
-        //format pre_date_month_year to store only month and year in format I prefer
-        $degree_cert->completed_month_year_format = $pre_date_month_year;
-
-        //save the formatted date
-        $degree_cert->save();
 
         //redirect back
         return Redirect::back()->with(Session::flash('message', 'Degree or Certificate Successfully Updated!'));
@@ -316,7 +289,6 @@ class EducationController extends Controller
         $this->award->create($request->all());
 
         return redirect('/education')->with(Session::flash('message', 'Honor or Scholarship Successfully Added!'));
-
 
     }
 
@@ -344,5 +316,18 @@ class EducationController extends Controller
 
     }
 
+    //format a passed year & month (e.g. 2020-09 becomes Sep 2020)
+    private function returnMonthYear($date){
+
+        //work around to tack on day at end of passed request date
+        $pre_end_date_str = $date.'-01';
+
+        //format $pre_end_date_month_year to store only month and year in neat format
+        // i.e. 'Aug 2017' or 'Dec 2012' etc.
+        $monthYear = date('M Y', strtotime($pre_end_date_str));
+
+        return $monthYear;
+
+    }
 
 }

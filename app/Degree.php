@@ -18,6 +18,10 @@ class Degree extends Model
         'completed_month_year_format'
     ];
 
+    public function scopeDegree($query,$personal_id){
+        return $query->where('personal_id', '=', $personal_id)->get();
+    }
+
 //establish that a degree/certificate belongs to one project
     public function education() {
         return $this->belongsTo(Education::class);

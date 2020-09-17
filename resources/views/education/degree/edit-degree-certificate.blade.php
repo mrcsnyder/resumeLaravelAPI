@@ -4,13 +4,13 @@
 
 @section('content')
 
-    <h1>Editing <span class="text-muted">'{{$degree->major}}' @ {{$edu->school_name}}</span></h1>
+    <h1>Editing <span class="text-muted">'{{$degree->major}}' @ {{$degree->education->school_name}}</span></h1>
 
     <form class="mb-3" method="POST" action="{{ route('/education/degree/degree-certificate-update', [$degree->id])}}">
         <input name="_method" type="hidden" value="PATCH">
         @csrf
 
-        <input class="form-control" id="school_id" value="{{$degree->id}}" name="school_id" type="hidden"/>
+        <input class="form-control" id="education_id" value="{{$degree->education_id}}" name="education_id" type="hidden"/>
 
         <div class="form-row">
 
@@ -57,10 +57,8 @@
             <textarea class="form-control" id="honors_info" name="honors_info">{{$degree->honors_info}}</textarea>
         </div>
 
-
         <button class="btn btn-lg btn-primary text-center" type="submit">Edit Degree or Certificate</button>
-
+        <a class="btn btn-lg btn-success" href="/education/edit-education/{{$degree->education->id}}">Back to {{$degree->education->school_name}} Edit</a>
     </form>
 
-    <a class="btn btn-lg btn-success" href="/education/edit-education/{{$edu->id}}">Back to {{$edu->school_name}} Edit</a>
  @endsection

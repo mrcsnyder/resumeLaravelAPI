@@ -8,6 +8,8 @@ use App\Repositories\Personal\PersonalRepositoryInterface;
 use App\Repositories\Personal\PersonalRepository;
 use App\Repositories\Award\AwardRepositoryInterface;
 use App\Repositories\Award\AwardRepository;
+use App\Repositories\Degree\DegreeRepositoryInterface;
+use App\Repositories\Degree\DegreeRepository;
 use App\Repositories\Education\EducationRepositoryInterface;
 use App\Repositories\Education\EducationRepository;
 
@@ -41,6 +43,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(EducationRepositoryInterface::class,EducationRepository::class);
 
         $this->app->bind(AwardRepositoryInterface::class,AwardRepository::class);
+        $this->app->bind(DegreeRepositoryInterface::class,DegreeRepository::class);
+
         $this->app->bind(ImageRepositoryInterface::class,ImageRepository::class);
         $this->app->bind(PDFRepositoryInterface::class,PDFRepository::class);
 

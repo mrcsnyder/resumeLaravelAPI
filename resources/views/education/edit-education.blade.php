@@ -60,7 +60,7 @@
 
         <button class="btn btn-lg btn-dark text-center" type="submit">Update Education</button>
 
-        <a class="btn btn-md btn-success" href="/education"><i class="fas fa-user-graduate"></i> Back to Education</a>
+        <a class="btn btn-lg btn-success" href="/education"><i class="fas fa-user-graduate"></i> Back to Education</a>
 
     </form>
 
@@ -119,7 +119,7 @@
     <form class="mb-3" method="POST" action="{{ route('/education/create-certificate-diploma') }}">
         @csrf
 
-        <input class="form-control" id="school_id" value="{{$education->id}}" name="school_id" type="hidden"/>
+        <input class="form-control" id="education_id" value="{{$education->id}}" name="education_id" type="hidden"/>
 
         <div class="form-row">
 
@@ -155,7 +155,7 @@
             <div class="col">
                 <div class="form-group">
                     <label for="completed_month_year">Completion Month & Year</label>
-                    <input class="form-control" id="completed_month_year" name="completed_month_year" type="month"/>
+                    <input class="form-control" id="completed_month_year_preformat" name="completed_month_year_preformat" type="month"/>
                 </div>
             </div>
 

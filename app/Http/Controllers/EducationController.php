@@ -26,24 +26,28 @@ use App\Repositories\Award\AwardRepository;
 use App\Repositories\Degree\DegreeRepositoryInterface;
 use App\Repositories\Degree\DegreeRepository;
 
+use Image;
+use App\Repositories\Image\ImageRepository;
+
 use App\Repositories\Education\EducationRepositoryInterface;
 use App\Repositories\Education\EducationRepository;
-
-
 
 class EducationController extends Controller
 {
 
+    protected $education;
     protected $award;
     protected $currentUser;
     protected $degree;
+    protected $image;
 
-    public function __construct(Award $award, Degree $degree)
+    public function __construct(Education $edu, Award $award, Degree $degree, Image $img)
     {
         // set the model
         $this->award = new AwardRepository($award);
         $this->degree = new DegreeRepository($degree);
-
+        $this->image = new ImageRepository($img);
+        $this->education = new EducationRepository($edu);
 
         //set currently logged in user
         $this->middleware(function ($request, $next){
@@ -75,7 +79,6 @@ class EducationController extends Controller
     //education create action
     public function create(PersonalRepositoryInterface $personalRepo) {
 
-
         $personal = $personalRepo->find($this->currentUser);
 
         $personal_id = $personal->id;
@@ -87,60 +90,18 @@ class EducationController extends Controller
     //education store action
     public function store(Request $request) {
 
-        $edu = new Education();
+        $start_month_year_format = ($this->returnMonthYear($request->input('start_month_year_preformat')));
+        $end_month_year_format = ($this->returnMonthYear($request->input('end_month_year_preformat')));
 
-        $edu->personal_id = $request->input('personal_id');
-        $edu->school_name = $request->input('school_name');
+        //nifty way to append key/values to request array
+        $request->request->add(['start_month_year_format' => $start_month_year_format, 'end_month_year_format' => $end_month_year_format]);
 
-        //get the file from the edit post page request...
-        $file = $request->file('logo');
+        if($request->hasFile('image_file')){
+            //params for storeImage: $request, $fileKey, $fileName, $path
+            $this->image->storeImage($request, 'image_file', $request['logo'], 'images/education');
+        }
 
-        //set the file name
-        $filename = uniqid(). $file->getClientOriginalName();
-
-        //move the file to correct location
-        $file->move('images/', $filename);
-
-        //here is where I need to add the thumbnail also....
-      //  $thumb_string="thmb-".$filename;
-
-        //image intervention creating different sized images
-      //  Image::make( public_path('images/'.$filename))->resize(430, 296)->save('images/'.$thumb_string);
-
-        //save school/institution logo filename to db
-        $edu->logo = $filename;
-
-
-        $edu->details = $request->input('details');
-
-        //save preformatted start date (i.e. '2017-08' to start_month_year_preformat
-        $edu->start_month_year_preformat = $request->input('start_month_year_preformat');
-
-        //work around to tack on day at end of request
-        $pre_start_date_str = $request->input('start_month_year_preformat').'-01';
-
-        //format $pre_start_date_month_year to store only month and year in neat format
-        // i.e. 'Aug 2017' or 'Dec 2012' etc.
-        $pre_start_date_month_year = date('M Y', strtotime($pre_start_date_str));
-
-       // set start_month_year_format to neatly formatted start date
-        $edu->start_month_year_format = $pre_start_date_month_year;
-
-        //save preformatted end date (i.e. '2017-08' to start_month_year_preformat
-        $edu->end_month_year_preformat = $request->input('end_month_year_preformat');
-
-        //work around to tack on day at end of request
-        $pre_end_date_str = $request->input('end_month_year_preformat').'-01';
-
-        //format $pre_end_date_month_year to store only month and year in neat format
-        // i.e. 'Aug 2017' or 'Dec 2012' etc.
-        $pre_end_date_month_year = date('M Y', strtotime($pre_end_date_str));
-
-        // set end_month_year_format to neatly formatted start date
-        $edu->end_month_year_format = $pre_end_date_month_year;
-
-
-        $edu->save();
+        $this->education->create($request->all());
 
         //redirect back with message for users!
         Session::flash('message', 'Education Successfully Added!');
@@ -151,7 +112,8 @@ class EducationController extends Controller
     //edit education view action
     public function edit($id,
                          PersonalRepositoryInterface $personalRepo,
-                         EducationRepositoryInterface $eduRepo)
+                         EducationRepositoryInterface $eduRepo
+                        )
     {
 
         $personal = $personalRepo->find($this->currentUser);
@@ -169,64 +131,25 @@ class EducationController extends Controller
         return view('education.edit-education', compact('education', 'degrees', 'certificates', 'personal_id'));
     }
 
-
     //edit education update action
     public function update(Request $request, $id)
     {
+        $start_month_year_format = ($this->returnMonthYear($request->input('start_month_year_preformat')));
+        $end_month_year_format = ($this->returnMonthYear($request->input('end_month_year_preformat')));
 
-        //add some error handling
-        $edu = Education::findOrFail($id);
+        //nifty way to append key/values to request array
+        $request->request->add(['start_month_year_format' => $start_month_year_format, 'end_month_year_format' => $end_month_year_format]);
 
-        //update all of the project attributes
-        $edu->update($request->all());
+        //handy array_filter method removes any unset values from request associative array
+        $filterRequest = array_filter($request->all());
 
-        $filename = '';
+        $this->education->update($filterRequest, $id);
 
-        if($request->hasFile('logo')){
+        if($request->hasFile('image_file')){
+            //params for storeImage: $request, $fileKey, $fileName, $path
+            $this->image->storeImage($request, 'image_file', $request['logo'], 'images/education');
 
-            $updatedImg = $request->file('logo');
-            $filename = uniqid(). $updatedImg->getClientOriginalName();
-            $updatedImg->move('images/', $filename);
-
-            //TODO: add this if I find I want to add predefined dimensions for logo
-//            $thumb_string="md-img-".$filename;
-//            Image::make( public_path('images/'.$filename))->resize(600, 270)->save('images/'.$thumb_string);
         }
-
-        if($filename > 0 ){
-            $edu->logo = $filename;
-        }
-
-
-        //TODO: add check here for if preformat has change for both start and end.  Extract this to its own method?
-        //save preformatted start date (i.e. '2017-08' to start_month_year_preformat
-        $edu->start_month_year_preformat = $request->input('start_month_year_preformat');
-
-        //work around to tack on day at end of request
-        $pre_start_date_str = $request->input('start_month_year_preformat').'-01';
-
-        //format $pre_start_date_month_year to store only month and year in neat format
-        // i.e. 'Aug 2017' or 'Dec 2012' etc.
-        $pre_start_date_month_year = date('M Y', strtotime($pre_start_date_str));
-
-        // set start_month_year_format to neatly formatted start date
-        $edu->start_month_year_format = $pre_start_date_month_year;
-
-        //save preformatted end date (i.e. '2017-08' to start_month_year_preformat
-        $edu->end_month_year_preformat = $request->input('end_month_year_preformat');
-
-        //work around to tack on day at end of request
-        $pre_end_date_str = $request->input('end_month_year_preformat').'-01';
-
-        //format $pre_end_date_month_year to store only month and year in neat format
-        // i.e. 'Aug 2017' or 'Dec 2012' etc.
-        $pre_end_date_month_year = date('M Y', strtotime($pre_end_date_str));
-
-        // set end_month_year_format to neatly formatted start date
-        $edu->end_month_year_format = $pre_end_date_month_year;
-
-        $edu->save();
-
 
         //redirect back
         return Redirect::back()->with(Session::flash('message', 'Education Successfully Updated!'));
@@ -244,7 +167,6 @@ class EducationController extends Controller
         //redirect back
         return Redirect::back()->with(Session::flash('message', 'Certificate or Degree Successfully Added!'));
     }
-
 
     //edit degree or certificate action view
     public function editDegreeCertificate($id, DegreeRepositoryInterface $degreeRepo){
@@ -281,7 +203,6 @@ class EducationController extends Controller
 
         return view('education.award.create-award', compact('personal_id'));
     }
-
 
     //store created award action
     public function storeAward(MakeAwardRequest $request){
@@ -320,11 +241,11 @@ class EducationController extends Controller
     private function returnMonthYear($date){
 
         //work around to tack on day at end of passed request date
-        $pre_end_date_str = $date.'-01';
+        $pre_date_str = $date.'-01';
 
-        //format $pre_end_date_month_year to store only month and year in neat format
+        //format given date to store only month and year in neat format
         // i.e. 'Aug 2017' or 'Dec 2012' etc.
-        $monthYear = date('M Y', strtotime($pre_end_date_str));
+        $monthYear = date('M Y', strtotime($pre_date_str));
 
         return $monthYear;
 

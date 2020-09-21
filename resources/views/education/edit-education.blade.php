@@ -20,19 +20,18 @@
         <div class="form-group">
 
             <label>Current Logo:</label>
-            <img class="img-responsive thumbnail" src="../../images/{{ $education->logo}}">
+            <img class="img-responsive thumbnail" src="../../images/education/{{ $education->logo}}">
         </div>
 
         <div class="form-group">
 
-        <label>Update Logo</label>
-        <div class="form-group">
-            <input class="form-control" type="file" name="logo" id="logo" onchange="readURL(this);"/>
+            <label for="profile_image">School Logo</label>
+            <input type="file" name="image_file" id="image_file" onchange="readURL(this);"/>
+            <input type="text" type="hidden" class="img_name" name="logo">
         </div>
 
         <div id="image_preview">
-            <img id="img_logo" class="img-responsive thumbnail" src="#" alt="uploaded logo">
-        </div>
+            <img id="img_logo" class="img-fluid img-thumbnail" src="#" alt="uploaded image">
         </div>
 
         <div class="form-group">

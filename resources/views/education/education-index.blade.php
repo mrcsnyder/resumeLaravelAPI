@@ -15,7 +15,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{$edu->school_name}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{$edu->start_month_year_format}} - {{$edu->end_month_year_format}}</h6>
-                <img class="img-responsive thumbnail" src="../../images/{{ $edu->logo}}">
+                <img class="img-responsive thumbnail" src="../../images/education/{{ $edu->logo}}">
                 <a class="btn btn-sm btn-dark" href="/education/edit-education/{{$edu->id}}">Edit</a>
             </div>
         </div>

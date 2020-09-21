@@ -9,7 +9,7 @@ class Education extends Model
     //
     protected $table = 'education';
 
-    protected $fillable = ['education_id', 'school_name', 'details', 'start_month_year', 'end_month_year'];
+    protected $fillable = ['personal_id', 'education_id', 'school_name', 'details', 'start_month_year_preformat', 'start_month_year_format', 'end_month_year_preformat', 'end_month_year_format', 'logo'];
 
     public function scopeEducation($query,$personal_id){
         return $query->where('personal_id', '=', $personal_id)->get();

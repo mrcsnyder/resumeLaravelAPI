@@ -11,11 +11,11 @@
         <label for="">School Name</label>
         <input class="form-control" id="school_name" name="school_name" type="text"/>
 
-        <div class="form-group mt-3">
-            <label for="">School Logo</label>
-            <div class="">
-                <input type="file" name="logo" id="logo" onchange="readURL(this);"/>
-            </div>
+        <div class="form-group">
+
+            <label for="profile_image">School Logo</label>
+            <input type="file" name="image_file" id="image_file" onchange="readURL(this);"/>
+            <input type="text" type="hidden" class="img_name" name="logo">
         </div>
 
         <div id="image_preview">

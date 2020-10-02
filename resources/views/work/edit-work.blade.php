@@ -50,11 +50,11 @@
 
         </div>
 
-        <button class="btn btn-lg btn-dark text-center" type="submit">Update Work</button>
+        <button class="btn btn-lg btn-dark text-center" type="submit">Update Work</button>  <a class="btn btn-lg btn-success" href="/work"><i class="fas fa-briefcase"></i> Back to Work</a>
 
     </form>
 
-    <a class="btn btn-md btn-success" href="/work"><i class="fas fa-briefcase"></i> Back to Work</a>
+
 
 @endsection
 

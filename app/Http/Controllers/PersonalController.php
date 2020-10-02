@@ -36,7 +36,15 @@ class PersonalController extends Controller
 
         //set currently logged in user
         $this->middleware(function ($request, $next){
+
+        if(auth()->user() != null) {
             $this->currentUser = auth()->user()->id;
+        }
+        //set this if passed through URL so that API endpoint works
+        else {
+            $this->currentUser = $request->id;
+        }
+
             return $next($request);
         });
 

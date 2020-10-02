@@ -16,6 +16,10 @@ class Skill extends Model
         'rating',
     ];
 
+    public function scopeSkill($query,$personal_id){
+        return $query->where('personal_id', '=', $personal_id)->get();
+    }
+
     //establish that skills belongs to one person
     public function personal() {
         return $this->belongsTo(Personal::class);

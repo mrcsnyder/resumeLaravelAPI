@@ -2,9 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MakeSkillRequest;
 use App\Personal;
+
 use App\Work;
+
 use App\Skill;
+use App\Repositories\Skill\SkillRepositoryInterface;
+use App\Repositories\Skill\SkillRepository;
+
+use App\Repositories\Personal\PersonalRepositoryInterface;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -14,23 +21,38 @@ use Illuminate\Support\Facades\Session;
 class WorkController extends Controller
 {
     //
-    public function index(){
+
+    protected $currentUser;
+    protected $skill;
 
 
-        //get currently signed in user
-        $user = auth()->user();
+    public function __construct(Skill $skill)
+    {
+        // set the model
+        $this->skill = new SkillRepository($skill);
 
-        //store users id
-        $user_id = $user->id;
+        //set currently logged in user
+        $this->middleware(function ($request, $next){
+            $this->currentUser = auth()->user()->id;
 
-        $personal = Personal::where('user_id','=',$user_id)->first();
+            return $next($request);
+        });
+
+    }
+
+    public function index(PersonalRepositoryInterface $personalRepo,
+                          SkillRepositoryInterface $skillRepo){
+
+
+        //possibly a neater way to do this, but it is working good
+        //see PersonalRepository method
+        $personal = $personalRepo->find($this->currentUser);
+
         $personal_id = $personal->id;
 
+        $skills = $skillRepo->find($personal_id);
 
         $work = Work::where('personal_id','=',$personal_id)->get();
-
-        //$skills = Skill::all();
-        $skills = Skill::where('personal_id', '=', $personal_id)->get();
 
 
         $coding = $skills->where('category','=','coding');
@@ -54,15 +76,12 @@ class WorkController extends Controller
     }
 
 
-    public function create(){
+    public function create(PersonalRepositoryInterface $personalRepo){
 
-        //get currently signed in user
-        $user = auth()->user();
+        //possibly a neater way to do this, but it is working good
+        //see PersonalRepository method
+        $personal = $personalRepo->find($this->currentUser);
 
-        //store users id
-        $user_id = $user->id;
-
-        $personal = Personal::where('user_id','=',$user_id)->first();
         $personal_id = $personal->id;
 
         return view('work.create-work', compact('personal_id'));
@@ -185,35 +204,22 @@ class WorkController extends Controller
 
     }
 
-
     //create skill view action
-    public function createSkill(){
+    public function createSkill(PersonalRepositoryInterface $personalRepo){
 
-        //get currently signed in user
-        $user = auth()->user();
+        //possibly a neater way to do this, but it is working good
+        //see PersonalRepository method
+        $personal = $personalRepo->find($this->currentUser);
 
-        //store users id
-        $user_id = $user->id;
-
-        $personal = Personal::where('user_id','=',$user_id)->first();
         $personal_id = $personal->id;
 
         return view('work.skill.create-skill', compact('personal_id'));
     }
 
-
     //store skill post action
+    public function storeSkill(MakeSkillRequest $request){
 
-    public function storeSkill(Request $request){
-
-        $skill = new Skill();
-        $skill->personal_id = $request->input('personal_id');
-        $skill->skill = $request->input('skill');
-
-        $skill->category = $request->input('category');
-        $skill->rating = $request->input('rating');
-        $skill->save();
-
+        $this->skill->create($request->all());
 
         //redirect back with message for users!
         Session::flash('message', 'Skill Successfully Added!');
@@ -221,43 +227,28 @@ class WorkController extends Controller
 
     }
 
-
     //update skill view action
+    public function editSkill($id, PersonalRepositoryInterface $personalRepo, SkillRepositoryInterface $skillRepo){
 
-    public function editSkill($id){
+        $skill = $skillRepo->get($id);
 
-        //get currently signed in user
-        $user = auth()->user();
+        //see PersonalRepository method
+        //TODO clean up the edit award form template(s) to include personal_id automatically, but provide it for create
+        $personal = $personalRepo->find($this->currentUser);
 
-        //store users id
-        $user_id = $user->id;
-
-        $personal = Personal::where('user_id','=',$user_id)->first();
         $personal_id = $personal->id;
-
-
-        $skill = Skill::findOrFail($id);
-
     return view('work.skill.edit-skill', compact('skill', 'personal_id'));
 
     }
 
-    public function updateSkill(Request $request, $id) {
+    public function updateSkill(MakeSkillRequest $request, $id) {
 
-
-        $skill = Skill::findOrFail($id);
-
-
-        //update all of the work attributes
-        $skill->update($request->all());
+        $this->skill->update($request->all(), $id);
 
         //redirect back
         return Redirect::back()->with(Session::flash('message', 'Skill Successfully Updated!'));
 
     }
-
-
-
 
 
 }

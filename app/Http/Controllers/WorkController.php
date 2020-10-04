@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MakeSkillRequest;
+use App\Http\Requests\MakeWorkRequest;
 use App\Personal;
 
 use App\Work;
 
 use App\Skill;
+
+use App\Repositories\Work\WorkRepositoryInterface;
+use App\Repositories\Work\WorkRepository;
+
 use App\Repositories\Skill\SkillRepositoryInterface;
 use App\Repositories\Skill\SkillRepository;
 
@@ -20,16 +25,17 @@ use Illuminate\Support\Facades\Session;
 
 class WorkController extends Controller
 {
-    //
 
     protected $currentUser;
+    protected $work;
     protected $skill;
 
 
-    public function __construct(Skill $skill)
+    public function __construct(Work $work, Skill $skill)
     {
         // set the model
         $this->skill = new SkillRepository($skill);
+        $this->work = new WorkRepository($work);
 
         //set currently logged in user
         $this->middleware(function ($request, $next){
@@ -41,8 +47,9 @@ class WorkController extends Controller
     }
 
     public function index(PersonalRepositoryInterface $personalRepo,
-                          SkillRepositoryInterface $skillRepo){
-
+                          WorkRepositoryInterface $workRepo,
+                          SkillRepositoryInterface $skillRepo
+    ){
 
         //possibly a neater way to do this, but it is working good
         //see PersonalRepository method
@@ -51,8 +58,7 @@ class WorkController extends Controller
         $personal_id = $personal->id;
 
         $skills = $skillRepo->find($personal_id);
-
-        $work = Work::where('personal_id','=',$personal_id)->get();
+        $work = $workRepo->find($personal_id);
 
 
         $coding = $skills->where('category','=','coding');
@@ -75,7 +81,6 @@ class WorkController extends Controller
         ));
     }
 
-
     public function create(PersonalRepositoryInterface $personalRepo){
 
         //possibly a neater way to do this, but it is working good
@@ -87,117 +92,49 @@ class WorkController extends Controller
         return view('work.create-work', compact('personal_id'));
     }
 
+    public function store(MakeWorkRequest $request){
 
-    public function store(Request $request){
+        $start_month_year_format = ($this->returnMonthYear($request->input('start_date_month_year_preformat')));
+        $end_month_year_format = ($this->returnMonthYear($request->input('end_date_month_year_preformat')));
 
-        $work = new Work();
+        //nifty way to append key/values to request array
+        $request->request->add(['start_date_month_year_format' => $start_month_year_format, 'end_date_month_year_format' => $end_month_year_format]);
 
-        $work->personal_id = $request->input('personal_id');
-        $work->role = $request->input('role');
-        $work->company_name = $request->input('company_name');
-        $work->description = $request->input('description');
-        $work->start_date_month_year_preformat = $request->input('start_date_month_year_preformat');
-
-        //work around to tack on day at end of request
-        $pre_date_str = $request->input('start_date_month_year_preformat').'-01';
-
-        $pre_date_month_year = date('M Y', strtotime($pre_date_str));
-
-        $work->start_date_month_year_format = $pre_date_month_year;
-
-
-        //check if end_date_month_year_preformat request input is null when posting and if so then set that to Present...
-        // ...if not proceed with date formatting
-        if($request->input('end_date_month_year_preformat') == null){
-            $work->end_date_month_year_preformat = 'Present';
-            $work->end_date_month_year_format = 'Present';
-
-        }
-        else {
-
-            $work->end_date_month_year_preformat = $request->input('end_date_month_year_preformat');
-
-            //work around to tack on day at end of request
-            $pre_date_str = $request->input('end_date_month_year_preformat').'-01';
-
-            $pre_date_month_year = date('M Y', strtotime($pre_date_str));
-
-            //format pre_date_month_year to store only month and year in format I prefer
-            $work->end_date_month_year_format = $pre_date_month_year;
-
-        }
-
-        //save work history
-        $work->save();
-
+        $this->work->create($request->all());
 
         //redirect back with message for users!
         Session::flash('message', 'Work Successfully Added!');
         return redirect('/work');
 
-
     }
 
-
     //edit view action
-    public function edit($id){
+    public function edit($id,
+                         PersonalRepositoryInterface $personalRepo,
+                         workRepositoryInterface $workRepo)
+    {
 
-        //get currently signed in user
-        $user = auth()->user();
-
-        //store users id
-        $user_id = $user->id;
-
-        $personal = Personal::where('user_id','=',$user_id)->first();
+        $personal = $personalRepo->find($this->currentUser);
         $personal_id = $personal->id;
+        //TODO modify forms so that this is not necessary in the edit form for education
+        // (degree not necessary since it is related to education record)
 
-        $work = Work::findOrFail($id);
+        //get work collection
+        $work = $workRepo->get($id);
 
         return view('work.edit-work', compact('work', 'personal_id'));
     }
 
     //update work post/patch action
-    public function update(Request $request, $id){
-        $work = Work::findOrFail($id);
+    public function update(MakeWorkRequest $request, $id){
 
+        $start_month_year_format = ($this->returnMonthYear($request->input('start_date_month_year_preformat')));
+        $end_month_year_format = ($this->returnMonthYear($request->input('end_date_month_year_preformat')));
 
-        //update all of the work attributes
-        $work->update($request->all());
+        //nifty way to append key/values to request array
+        $request->request->add(['start_date_month_year_format' => $start_month_year_format, 'end_date_month_year_format' => $end_month_year_format]);
 
-
-        $work->start_date_month_year_preformat = $request->input('start_date_month_year_preformat');
-
-        //work around to tack on day at end of request
-        $pre_date_str = $request->input('start_date_month_year_preformat').'-01';
-
-        $pre_date_month_year = date('M Y', strtotime($pre_date_str));
-
-        $work->start_date_month_year_format = $pre_date_month_year;
-
-
-        //check if end_date_month_year_preformat request input is null when posting and if so then set that to Present...
-        // ...if not proceed with date formatting
-        if($request->input('end_date_month_year_preformat') == null){
-            $work->end_date_month_year_preformat = 'Present';
-            $work->end_date_month_year_format = 'Present';
-
-        }
-        else {
-
-            $work->end_date_month_year_preformat = $request->input('end_date_month_year_preformat');
-
-            //work around to tack on day at end of request
-            $pre_date_str = $request->input('end_date_month_year_preformat').'-01';
-
-            $pre_date_month_year = date('M Y', strtotime($pre_date_str));
-
-            //format pre_date_month_year to store only month and year in format I prefer
-            $work->end_date_month_year_format = $pre_date_month_year;
-
-        }
-
-        //save updated work history
-        $work->save();
+        $this->work->update($request->all(), $id);
 
         //redirect back
         return Redirect::back()->with(Session::flash('message', 'Work Successfully Updated!'));
@@ -250,5 +187,24 @@ class WorkController extends Controller
 
     }
 
+    //format a passed year & month (e.g. 2020-09 becomes Sep 2020)
+    private function returnMonthYear($date){
+
+        if($date == null) {
+            $monthYear = 'Present';
+        }
+        else {
+            //work around to tack on day at end of passed request date
+            $pre_date_str = $date.'-01';
+
+            //format given date to store only month and year in neat format
+            // i.e. 'Aug 2017' or 'Dec 2012' etc.
+            $monthYear = date('M Y', strtotime($pre_date_str));
+
+        }
+
+        return $monthYear;
+
+    }
 
 }

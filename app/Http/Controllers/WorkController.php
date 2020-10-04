@@ -2,39 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\MakeSkillRequest;
 use App\Http\Requests\MakeWorkRequest;
-use App\Personal;
 
 use App\Work;
-
-use App\Skill;
 
 use App\Repositories\Work\WorkRepositoryInterface;
 use App\Repositories\Work\WorkRepository;
 
 use App\Repositories\Skill\SkillRepositoryInterface;
-use App\Repositories\Skill\SkillRepository;
 
 use App\Repositories\Personal\PersonalRepositoryInterface;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
-
 
 class WorkController extends Controller
 {
 
     protected $currentUser;
     protected $work;
-    protected $skill;
 
-
-    public function __construct(Work $work, Skill $skill)
+    public function __construct(Work $work)
     {
         // set the model
-        $this->skill = new SkillRepository($skill);
+//        $this->skill = new SkillRepository($skill);
         $this->work = new WorkRepository($work);
 
         //set currently logged in user
@@ -138,52 +129,6 @@ class WorkController extends Controller
 
         //redirect back
         return Redirect::back()->with(Session::flash('message', 'Work Successfully Updated!'));
-
-    }
-
-    //create skill view action
-    public function createSkill(PersonalRepositoryInterface $personalRepo){
-
-        //possibly a neater way to do this, but it is working good
-        //see PersonalRepository method
-        $personal = $personalRepo->find($this->currentUser);
-
-        $personal_id = $personal->id;
-
-        return view('work.skill.create-skill', compact('personal_id'));
-    }
-
-    //store skill post action
-    public function storeSkill(MakeSkillRequest $request){
-
-        $this->skill->create($request->all());
-
-        //redirect back with message for users!
-        Session::flash('message', 'Skill Successfully Added!');
-        return redirect('/work');
-
-    }
-
-    //update skill view action
-    public function editSkill($id, PersonalRepositoryInterface $personalRepo, SkillRepositoryInterface $skillRepo){
-
-        $skill = $skillRepo->get($id);
-
-        //see PersonalRepository method
-        //TODO clean up the edit award form template(s) to include personal_id automatically, but provide it for create
-        $personal = $personalRepo->find($this->currentUser);
-
-        $personal_id = $personal->id;
-    return view('work.skill.edit-skill', compact('skill', 'personal_id'));
-
-    }
-
-    public function updateSkill(MakeSkillRequest $request, $id) {
-
-        $this->skill->update($request->all(), $id);
-
-        //redirect back
-        return Redirect::back()->with(Session::flash('message', 'Skill Successfully Updated!'));
 
     }
 

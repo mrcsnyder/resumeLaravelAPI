@@ -61,10 +61,6 @@ Route::get('/education/award/edit-award/{id}', 'EducationController@editAward')-
 ///education/award/award-update
 Route::patch('/education/award/edit-award/{id}', 'EducationController@updateAward')->name('/education/award/award-update')->middleware('power');
 
-
-
-
-
 //work index page and root/home route
 Route::get('/work', 'WorkController@index')->name('/work')->middleware('power');
 
@@ -76,8 +72,6 @@ Route::get('/work/create-work', 'WorkController@create')->name('/work/create-wor
 Route::post('/work/create-work', 'WorkController@store')->name('/work/create-work')->middleware('power');
 
 
-
-
 //edit work get/view route
 Route::get('/work/edit-work/{id}', 'WorkController@edit')->name('/work/edit-work')->middleware('power');
 
@@ -85,23 +79,19 @@ Route::get('/work/edit-work/{id}', 'WorkController@edit')->name('/work/edit-work
 Route::patch('/work/edit-work/{id}', 'WorkController@update')->name('/work/work-update')->middleware('power');
 
 
-
 //skill create page route
+Route::get('/skills', 'SkillsController@index')->name('/skills')->middleware('power');
 //createSkill
-Route::get('/work/skill/create-skill', 'WorkController@createSkill')->name('/work/skill/create-skill')->middleware('power');
-
+Route::get('/work/skill/create-skill', 'SkillsController@createSkill')->name('/work/skill/create-skill')->middleware('power');
 
 //store newly created work post route
-Route::post('/work/skill/create-skill', 'WorkController@storeSkill')->name('/work/skill/create-skill')->middleware('power');
-
-
-
+Route::post('/work/skill/create-skill', 'SkillsController@storeSkill')->name('/work/skill/create-skill')->middleware('power');
 
 //edit skill get/view route
-Route::get('/work/skill/edit-skill/{id}', 'WorkController@editSkill')->name('/work/skill/edit-skill')->middleware('power');
+Route::get('/work/skill/edit-skill/{id}', 'SkillsController@editSkill')->name('/work/skill/edit-skill')->middleware('power');
 
 // update skill
-Route::patch('/work/skill/edit-skill/{id}', 'WorkController@updateSkill')->name('/work/skill/skill-update')->middleware('power');
+Route::patch('/work/skill/edit-skill/{id}', 'SkillsController@updateSkill')->name('/work/skill/skill-update')->middleware('power');
 
 
 

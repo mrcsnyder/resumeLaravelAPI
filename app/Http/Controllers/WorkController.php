@@ -51,7 +51,6 @@ class WorkController extends Controller
         $skills = $skillRepo->find($personal_id);
         $work = $workRepo->find($personal_id);
 
-
         $coding = $skills->where('category','=','coding');
 
         $methods_devops = $skills->where('category','=','methods_devops');

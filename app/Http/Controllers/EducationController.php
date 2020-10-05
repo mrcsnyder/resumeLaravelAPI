@@ -4,19 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Education;
 
-use App\Degree;
-
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 use App\Repositories\Personal\PersonalRepositoryInterface;
-
-use App\Repositories\Award\AwardRepositoryInterface;
-
-use App\Repositories\Degree\DegreeRepositoryInterface;
-use App\Repositories\Degree\DegreeRepository;
 
 use Image;
 use App\Repositories\Image\ImageRepository;
@@ -29,13 +22,11 @@ class EducationController extends Controller
 
     protected $education;
     protected $currentUser;
-    protected $degree;
     protected $image;
 
-    public function __construct(Education $edu, Degree $degree, Image $img)
+    public function __construct(Education $edu, Image $img)
     {
-        // set the model
-        $this->degree = new DegreeRepository($degree);
+
         $this->image = new ImageRepository($img);
         $this->education = new EducationRepository($edu);
 
@@ -44,13 +35,11 @@ class EducationController extends Controller
             $this->currentUser = auth()->user()->id;
             return $next($request);
         });
-
     }
 
     //education index action
     public function index(PersonalRepositoryInterface $personalRepo,
-                          EducationRepositoryInterface $eduRepo,
-                          AwardRepositoryInterface $awardRepo)
+                          EducationRepositoryInterface $eduRepo)
     {
 
         //possibly a neater way to do this, but it is working good
@@ -61,7 +50,7 @@ class EducationController extends Controller
 
         $education = $eduRepo->find($personal_id);
 
-        $awards = $awardRepo->find($personal_id);
+        $awards = $personal->awards;
 
         return view('education.education-index', compact('education', 'awards'));
     }
@@ -74,7 +63,6 @@ class EducationController extends Controller
         $personal_id = $personal->id;
 
         return view('education.create-education', compact('personal_id'));
-
     }
 
     //education store action
@@ -96,7 +84,6 @@ class EducationController extends Controller
         //redirect back with message for users!
         Session::flash('message', 'Education Successfully Added!');
         return redirect('/education');
-
     }
 
     //edit education view action
@@ -111,14 +98,10 @@ class EducationController extends Controller
         //TODO modify forms so that this is not necessary in the edit form for education
         // (degree not necessary since it is related to education record)
 
-        //get education collection
+        //get education collection associated with id
         $education = $eduRepo->get($id);
 
-        //get degrees & certs from education collection
-        $degrees = $education->education_degrees;
-        $certificates = $education->education_certificates;
-
-        return view('education.edit-education', compact('education', 'degrees', 'certificates', 'personal_id'));
+        return view('education.edit-education', compact('education','personal_id'));
     }
 
     //edit education update action
@@ -145,44 +128,6 @@ class EducationController extends Controller
         return Redirect::back()->with(Session::flash('message', 'Education Successfully Updated!'));
     }
 
-    //store certificate or diploma action that is utilized in the edit view for education parent
-    public function storeCertificateDiploma(Request $request){
-
-        $completed_month_year_format = ($this->returnMonthYear($request->input('completed_month_year_preformat')));
-        //nifty way to append key/values to request array
-        $request->request->add(['completed_month_year_format' => $completed_month_year_format]);
-
-        $this->degree->create($request->all());
-
-        //redirect back
-        return Redirect::back()->with(Session::flash('message', 'Certificate or Degree Successfully Added!'));
-    }
-
-    //edit degree or certificate action view
-    public function editDegreeCertificate($id, DegreeRepositoryInterface $degreeRepo){
-
-        $degree = $degreeRepo->get($id);
-
-        return view('education.degree.edit-degree-certificate', compact('degree'));
-    }
-
-    //update degree or certificate action post action
-    public function updateDegreeCertificate(Request $request, $id, DegreeRepositoryInterface $degreeRepo){
-
-        $completed_month_year_format = ($this->returnMonthYear($request->input('completed_month_year_preformat')));
-        //nifty way to append key/values to request array
-        $request->request->add(['completed_month_year_format' => $completed_month_year_format]);
-
-        $degree_cert = $degreeRepo->get($id);
-
-        //update all of the project attributes
-        $degree_cert->update($request->all());
-
-        //redirect back
-        return Redirect::back()->with(Session::flash('message', 'Degree or Certificate Successfully Updated!'));
-
-    }
-
     //format a passed year & month (e.g. 2020-09 becomes Sep 2020)
     private function returnMonthYear($date){
 
@@ -194,7 +139,6 @@ class EducationController extends Controller
         $monthYear = date('M Y', strtotime($pre_date_str));
 
         return $monthYear;
-
     }
 
 }

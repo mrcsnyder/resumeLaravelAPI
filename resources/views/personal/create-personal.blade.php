@@ -56,6 +56,8 @@
 
         <div class="form-group">
             <label for="resume">Resume (PDF)</label>
+            <a class="btn btn-sm btn-dark" href="https://docs.google.com/document/d/1-SZGCOYjFdgRJFJhUuxwBBr9jhz5fFFbqRTimmNc9Ys/export?format=pdf" title="This PDF may take several seconds to generate from Google Docs!" ><i class="fas fa-download"></i> Google Docs Resume </a>
+            <br/>
             <input type="file" name="pdf_file" id="pdf_file"/>
             <input type="text" type="hidden" class="file_name" name="resume">
         </div>
@@ -73,7 +75,6 @@
         <button class="btn btn-lg btn-dark text-center" type="submit">Create Personal Details</button>
 
     </form>
-
 
 @endsection
 

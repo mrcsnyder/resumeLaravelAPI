@@ -36,15 +36,15 @@ Route::patch('/education/edit-education/{id}', 'EducationController@update')->na
 
 /// create certficate-diploma
 ///  /education/create-certificate-diploma
-Route::post('/education/create-certificate-diploma', 'EducationController@storeCertificateDiploma')->name('/education/create-certificate-diploma')->middleware('power');
+Route::post('/education/create-certificate-diploma', 'DegreeController@storeCertificateDiploma')->name('/education/create-certificate-diploma')->middleware('power');
 
 
 // edit certificate/diploma view
-Route::get('/education/degree/edit-degree-certificate/{id}', 'EducationController@editDegreeCertificate')->name('/education/degree/edit-degree-certificate/{id}')->middleware('power');
+Route::get('/education/degree/edit-degree-certificate/{id}', 'DegreeController@editDegreeCertificate')->name('/education/degree/edit-degree-certificate/{id}')->middleware('power');
 
 
 // update certificate/diploma route
-Route::patch('/education/degree/edit-degree-certificate/{id}', 'EducationController@updateDegreeCertificate')->name('/education/degree/degree-certificate-update')->middleware('power');
+Route::patch('/education/degree/edit-degree-certificate/{id}', 'DegreeController@updateDegreeCertificate')->name('/education/degree/degree-certificate-update')->middleware('power');
 
 
 // create award view

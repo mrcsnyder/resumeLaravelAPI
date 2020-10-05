@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="bfc13655-5c50-4f75-aee6-377f140cc187" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EducationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EducationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/education/award/create-award.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/education/award/create-award.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/education/edit-education.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/education/edit-education.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/education/education-index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/education/education-index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/personal/create-personal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/personal/create-personal.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/personal/edit-personal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/personal/edit-personal.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +191,7 @@
       <workItem from="1595820784202" duration="565000" />
       <workItem from="1596324676280" duration="28573000" />
       <workItem from="1599957593792" duration="51708000" />
-      <workItem from="1601357739159" duration="15812000" />
+      <workItem from="1601357739159" duration="19619000" />
     </task>
     <task id="LOCAL-00001" summary="updating api access points">
       <created>1583120993219</created>
@@ -226,12 +232,16 @@
     </state>
     <state x="812" y="399" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.822@0.23.1440.822" timestamp="1599959196448" />
     <state x="812" y="402" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.829@0.23.1440.829" timestamp="1599265706312" />
-    <state x="506" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601866852839">
+    <state x="512" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1601868368696">
+      <screen x="0" y="23" width="1440" height="827" />
+    </state>
+    <state x="512" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.827@0.23.1440.827" timestamp="1601868368696" />
+    <state x="506" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601868522389">
       <screen x="0" y="23" width="1440" height="827" />
     </state>
     <state x="506" y="217" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.821@0.23.1440.821" timestamp="1600138093370" />
     <state x="506" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.825@0.23.1440.825" timestamp="1601785715666" />
     <state x="506" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.826@0.23.1440.826" timestamp="1601610475237" />
-    <state x="506" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.827@0.23.1440.827" timestamp="1601866852839" />
+    <state x="506" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.827@0.23.1440.827" timestamp="1601868522389" />
   </component>
 </project>

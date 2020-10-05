@@ -52,16 +52,9 @@
 
         </div>
 
-
         <button class="btn btn-lg btn-primary text-center" type="submit">Create Award</button>
+        <a class="btn btn-lg btn-success" href="/education"><i class="fas fa-user-graduate"></i> Back to Education</a>
 
     </form>
-
-
-
-
 @endsection
 
-@section('scripts')
-{{--    <script  src="/js/image_upload.js"></script>--}}
-@endsection

@@ -26,5 +26,5 @@
 
     <hr/>
     @include('education.award.index-awards')
-    
+
 @endsection

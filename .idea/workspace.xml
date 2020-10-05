@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bfc13655-5c50-4f75-aee6-377f140cc187" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EducationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EducationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WorkController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WorkController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/pdf-resume/Chris-Snyder_Resume_2-6-2020.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/education/education-index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/education/education-index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +185,7 @@
       <workItem from="1595820784202" duration="565000" />
       <workItem from="1596324676280" duration="28573000" />
       <workItem from="1599957593792" duration="51708000" />
-      <workItem from="1601357739159" duration="15370000" />
+      <workItem from="1601357739159" duration="15812000" />
     </task>
     <task id="LOCAL-00001" summary="updating api access points">
       <created>1583120993219</created>

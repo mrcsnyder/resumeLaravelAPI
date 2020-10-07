@@ -16,6 +16,8 @@ use App\Repositories\Personal\PersonalRepositoryInterface;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
+use App\Http\Utilities\ControllerHelpers;
+
 class WorkController extends Controller
 {
 
@@ -84,8 +86,8 @@ class WorkController extends Controller
 
     public function store(MakeWorkRequest $request){
 
-        $start_month_year_format = ($this->returnMonthYear($request->input('start_date_month_year_preformat')));
-        $end_month_year_format = ($this->returnMonthYear($request->input('end_date_month_year_preformat')));
+        $start_month_year_format = (ControllerHelpers::returnMonthYear($request->input('start_date_month_year_preformat')));
+        $end_month_year_format = (ControllerHelpers::returnMonthYear($request->input('end_date_month_year_preformat')));
 
         //nifty way to append key/values to request array
         $request->request->add(['start_date_month_year_format' => $start_month_year_format, 'end_date_month_year_format' => $end_month_year_format]);
@@ -118,8 +120,8 @@ class WorkController extends Controller
     //update work post/patch action
     public function update(MakeWorkRequest $request, $id){
 
-        $start_month_year_format = ($this->returnMonthYear($request->input('start_date_month_year_preformat')));
-        $end_month_year_format = ($this->returnMonthYear($request->input('end_date_month_year_preformat')));
+        $start_month_year_format = (ControllerHelpers::returnMonthYear($request->input('start_date_month_year_preformat')));
+        $end_month_year_format = (ControllerHelpers::returnMonthYear($request->input('end_date_month_year_preformat')));
 
         //nifty way to append key/values to request array
         $request->request->add(['start_date_month_year_format' => $start_month_year_format, 'end_date_month_year_format' => $end_month_year_format]);
@@ -128,27 +130,6 @@ class WorkController extends Controller
 
         //redirect back
         return Redirect::back()->with(Session::flash('message', 'Work Successfully Updated!'));
-
-    }
-
-    //format a passed year & month (e.g. 2020-09 becomes Sep 2020)
-    private function returnMonthYear($date){
-
-        if($date == null) {
-            $monthYear = 'Present';
-        }
-        else {
-            //work around to tack on day at end of passed request date
-            $pre_date_str = $date.'-01';
-
-            //format given date to store only month and year in neat format
-            // i.e. 'Aug 2017' or 'Dec 2012' etc.
-            $monthYear = date('M Y', strtotime($pre_date_str));
-
-        }
-
-        return $monthYear;
-
     }
 
 }

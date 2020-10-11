@@ -1,9 +1,10 @@
 @extends('layouts.default')
 @section('title', 'Manage Projects')
 @section('content')
-<h1>Manage Projects</h1>
-<a class="btn btn-sm btn-outline-success mb-2" href="/projects/create-project">Create Project</a>
-<br/>
+
+    <h1><i class="fas fa-laptop-code mb-3"></i> Manage Projects Endpoint</h1>
+
+    <a class="btn btn-sm btn-dark mb-3" href="/projects/create-project">Create Project</a>
 
 @foreach($projects as $project)
 
@@ -18,6 +19,6 @@
         <br/>
     </div>
 
-
 @endforeach
+
 @endsection

@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Repositories\Award;
+namespace App\Repositories\Project;
 
 //use Illuminate\Database\Eloquent\Model;
 
-use App\Award;
+use App\Project;
 
-class AwardRepository implements AwardRepositoryInterface
+class ProjectRepository implements ProjectRepositoryInterface
 {
     protected $model;
 
-    public function __construct(Award $model) {
+    public function __construct(Project $model) {
         $this->model = $model;
     }
 
@@ -26,19 +26,19 @@ class AwardRepository implements AwardRepositoryInterface
         return $this->model;
     }
 
-//this function returns the award based on the logged in user's id
+//this return the project based on the logged in user's id
     public function find(int $id) {
 
-        return $this->model->award($id);
+        return $this->model->project($id);
 
     }
 
     // update an award
     public function update(array $data, $id)
     {
-        $award = $this->get($id);
+        $personal = $this->get($id);
 
-        return $award->update($data);
+        return $personal->update($data);
 
     }
 

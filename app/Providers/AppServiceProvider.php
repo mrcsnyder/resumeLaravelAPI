@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+
+use App\Repositories\ProjectImage\ProjectImageRepository;
+use App\Repositories\ProjectImage\ProjectImageRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 use App\Repositories\Personal\PersonalRepositoryInterface;
@@ -21,6 +24,9 @@ use App\Repositories\Work\WorkRepositoryInterface;
 
 use App\Repositories\Skill\SkillRepository;
 use App\Repositories\Skill\SkillRepositoryInterface;
+
+use App\Repositories\Project\ProjectRepository;
+use App\Repositories\Project\ProjectRepositoryInterface;
 
 use App\Repositories\Image\ImageRepositoryInterface;
 use App\Repositories\Image\ImageRepository;
@@ -55,9 +61,14 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AwardRepositoryInterface::class,AwardRepository::class);
 
         $this->app->bind(WorkRepositoryInterface::class,WorkRepository::class);
+
         $this->app->bind(SkillRepositoryInterface::class,SkillRepository::class);
 
         $this->app->bind(DegreeRepositoryInterface::class,DegreeRepository::class);
+
+        $this->app->bind(ProjectRepositoryInterface::class,ProjectRepository::class);
+        $this->app->bind(ProjectImageRepositoryInterface::class,ProjectImageRepository::class);
+
 
         $this->app->bind(ImageRepositoryInterface::class,ImageRepository::class);
         $this->app->bind(PDFRepositoryInterface::class,PDFRepository::class);

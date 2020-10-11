@@ -5,6 +5,18 @@ namespace App\Http\Utilities;
 class ControllerHelpers
 {
 
+    //store file in appropriate location
+    public static function storeFile($file, $path){
+
+        //set the unique file name
+        $filename = uniqid(). $file->getClientOriginalName();
+
+        //move the file to correct location
+        $file->move($path, $filename);
+
+        return $filename;
+    }
+
     //format a passed year & month (e.g. 2020-09 becomes Sep 2020)
     public static function returnMonthYear($date){
 
@@ -22,6 +34,5 @@ class ControllerHelpers
 
         return $monthYear;
     }
-
 
 }

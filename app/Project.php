@@ -11,6 +11,10 @@ class Project extends Model
 
     protected $fillable = ['personal_id', 'title', 'full_detail', 'project_url', 'project_repo'];
 
+    public function scopeProject($query,$personal_id){
+        return $query->where('personal_id', '=', $personal_id)->get();
+    }
+
     public function images()
     {
         return $this->hasMany(ProjectImage::class);

@@ -5,12 +5,10 @@
 <h1>Create Project</h1>
 <form method="POST" action="{{ route('/projects/create-project') }}">
     @csrf
-
     <input type="hidden" value="{{$personal_id}}" name="personal_id"/>
 
     <label for="">Project Name</label>
     <input class="form-control" id="title" name="title" type="text"/>
-
 
     <div class="form-group">
         <label for="full_detail">Detailed Explanation</label>
@@ -35,12 +33,9 @@
 
     </div>
 
-
-    <button class="btn btn-lg btn-primary text-center" type="submit">Create Project</button>
+    <button class="btn btn-lg btn-dark text-center" type="submit">Save Project</button>
+    <a class="btn btn-lg btn-success" href="/projects"><i class="fas fa-laptop-code"></i> Back to Projects</a>
 
 </form>
-
-
-
 
  @endsection

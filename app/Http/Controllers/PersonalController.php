@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Personal;
 
 //Intervention Image
@@ -11,8 +9,10 @@ use Image;
 
 use App\Repositories\Personal\PersonalRepositoryInterface;
 use App\Repositories\Personal\PersonalRepository;
+
 use App\Repositories\Image\ImageRepository;
 use App\Repositories\PDF\PDFRepository;
+
 use App\Http\Requests\MakePersonalRequest;
 use App\Http\Requests\EditPersonalRequest;
 
@@ -21,7 +21,6 @@ use Illuminate\Support\Facades\Session;
 
 class PersonalController extends Controller
 {
-
     protected $model;
     protected $image;
     protected $pdf;
@@ -92,7 +91,7 @@ class PersonalController extends Controller
         //redirect back with message
         Session::flash('message', 'Personal Details Successfully Added!');
         return redirect('/personal');
-    }
+ }
 
 // edit personal view action
 public function edit(PersonalRepositoryInterface $personalRepo){
@@ -105,7 +104,6 @@ public function edit(PersonalRepositoryInterface $personalRepo){
         $personal = $personalRepo->find($this->currentUser);
 
         return view('personal.edit-personal', compact('personal', 'user_id'));
-
 }
 
 public function update(EditPersonalRequest $request, $id){
@@ -125,15 +123,14 @@ public function update(EditPersonalRequest $request, $id){
 
         //params for storePDF: $request, $fileKey, $fileName
         $this->pdf->storePDF($request, 'pdf_file', 'pdf-resume');
-
     }
 
     //redirect back
     return Redirect::back()->with(Session::flash('message', 'Personal Details Successfully Updated!'));
-
 }
 
 //get endpoint action
+//TODO I need to refactor this either here or in the repository style
 public function getPersonal($id){
 
     //get all project ids and the images

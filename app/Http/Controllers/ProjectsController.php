@@ -6,7 +6,6 @@ use App\Repositories\Project\ProjectRepository;
 use App\Repositories\Project\ProjectRepositoryInterface;
 
 use App\Repositories\ProjectImage\ProjectImageRepository;
-use App\Repositories\ProjectImage\ProjectImageRepositoryInterface;
 
 use App\Repositories\Personal\PersonalRepositoryInterface;
 

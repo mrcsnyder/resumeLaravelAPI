@@ -17,8 +17,8 @@
                 <span class="text-muted"><i class="fas fa-star"></i> Main Image <i class="fas fa-star"></i><br/></span>
             @endif
 
-            <a href="/images/{{$image->file_name}}" target="_blank">
-                <img class="img-fluid mx-auto" src="/images/thmb-{{$image->file_name}}">
+            <a href="/images/portfolio-gallery-images/{{$image->file_name}}" target="_blank">
+                <img class="img-fluid mx-auto" src="/images/portfolio-gallery-images/thmb-{{$image->file_name}}">
             </a>
 
             <div class="card card-body">

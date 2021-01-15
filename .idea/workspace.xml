@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bfc13655-5c50-4f75-aee6-377f140cc187" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/commandlinetools/Laravel_1_10_21__7_42_PM.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/resumeLaravelAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/resumeLaravelAPI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/projects/edit-project-images.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projects/edit-project-images.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +192,7 @@
       <workItem from="1601357739159" duration="39069000" />
       <workItem from="1607838305479" duration="1405000" />
       <workItem from="1610335773873" duration="552000" />
-      <workItem from="1610336495664" duration="3177000" />
+      <workItem from="1610336495664" duration="3958000" />
     </task>
     <task id="LOCAL-00001" summary="updating api access points">
       <created>1583120993219</created>
@@ -229,23 +225,5 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="updating api access points" />
     <option name="LAST_COMMIT_MESSAGE" value="updating api access points" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="812" y="399" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1599959196448">
-      <screen x="0" y="23" width="1440" height="822" />
-    </state>
-    <state x="812" y="399" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.822@0.23.1440.822" timestamp="1599959196448" />
-    <state x="812" y="402" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.829@0.23.1440.829" timestamp="1599265706312" />
-    <state x="512" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1601868368696">
-      <screen x="0" y="23" width="1440" height="827" />
-    </state>
-    <state x="512" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.827@0.23.1440.827" timestamp="1601868368696" />
-    <state x="506" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602381444889">
-      <screen x="0" y="23" width="1440" height="826" />
-    </state>
-    <state x="506" y="217" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.821@0.23.1440.821" timestamp="1600138093370" />
-    <state x="506" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.825@0.23.1440.825" timestamp="1601785715666" />
-    <state x="506" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.826@0.23.1440.826" timestamp="1602381444889" />
-    <state x="506" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.827@0.23.1440.827" timestamp="1602375955818" />
   </component>
 </project>

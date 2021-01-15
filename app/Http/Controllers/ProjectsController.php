@@ -98,7 +98,7 @@ class ProjectsController extends Controller
 
         $file_name = ControllerHelpers::storeFile($request->file('file'), $this->projectImagePath);
 
-        ImageHelpers::generateThumb(430,296, $file_name, $this->projectImagePath);
+        ImageHelpers::generateThumb(296,430, $file_name, $this->projectImagePath);
 
         //save the image details into the database
         $image = $project->images()->create([

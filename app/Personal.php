@@ -69,7 +69,7 @@ class Personal extends Model
 
     public function business_skills(){
 
-        return $this->skills()->where('category','=', 'operating_systems');
+        return $this->skills()->where('category','=', 'business');
     }
 
 

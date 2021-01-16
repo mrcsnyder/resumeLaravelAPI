@@ -148,3 +148,7 @@ Route::delete('/projects/project-delete/{id}', 'ProjectsController@destroyProjec
 ////email contact resume route
 Route::post('/resume/send-contact', 'HomeController@sendFromContact')->name('/resume/send-contact');
 
+
+
+//debug phpinfo page
+Route::view('/debug/php-info', 'debug.phpinfo');

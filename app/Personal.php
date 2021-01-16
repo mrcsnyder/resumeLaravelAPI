@@ -22,7 +22,7 @@ class Personal extends Model
 
     public function work()
     {
-        return $this->hasMany(Work::class);
+        return $this->hasMany(Work::class)->orderBy('created_at', 'desc');
     }
 
     //awards parent and types

@@ -49,27 +49,27 @@ class Personal extends Model
 
     public function coding_skills(){
 
-        return $this->skills()->where('category','=', 'coding');
+        return $this->skills()->where('category','=', 'coding')->orderBy('skill', 'ASC');
     }
 
     public function methods_devops_skills(){
 
-        return $this->skills()->where('category','=', 'methods_devops');
+        return $this->skills()->where('category','=', 'methods_devops')->orderBy('skill', 'ASC');
     }
 
     public function software_skills(){
 
-        return $this->skills()->where('category','=', 'software');
+        return $this->skills()->where('category','=', 'software')->orderBy('skill', 'ASC');
     }
 
     public function operating_systems_skills(){
 
-        return $this->skills()->where('category','=', 'operating_systems');
+        return $this->skills()->where('category','=', 'operating_systems')->orderBy('skill', 'ASC');
     }
 
     public function business_skills(){
 
-        return $this->skills()->where('category','=', 'business');
+        return $this->skills()->where('category','=', 'business')->orderBy('skill', 'ASC');
     }
 
 
